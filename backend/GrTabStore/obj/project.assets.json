@@ -5231,11 +5231,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anes\\source\\repos\\GrTabStore\\GrTabStore\\GrTabStore.csproj",
+      "projectUniqueName": "C:\\Users\\Anes\\source\\repos\\GrTabStore\\backend\\GrTabStore\\GrTabStore.csproj",
       "projectName": "GrTabStore",
-      "projectPath": "C:\\Users\\Anes\\source\\repos\\GrTabStore\\GrTabStore\\GrTabStore.csproj",
+      "projectPath": "C:\\Users\\Anes\\source\\repos\\GrTabStore\\backend\\GrTabStore\\GrTabStore.csproj",
       "packagesPath": "C:\\Users\\Anes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anes\\source\\repos\\GrTabStore\\GrTabStore\\obj\\",
+      "outputPath": "C:\\Users\\Anes\\source\\repos\\GrTabStore\\backend\\GrTabStore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
