@@ -1,0 +1,6 @@
+@GrTabStore_HostAddress = http://localhost:5043
+
+GET {{GrTabStore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
