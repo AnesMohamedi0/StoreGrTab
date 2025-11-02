@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'config/routes.dart';
+import 'package:grtabstore/ui/screens/Home/desktopHome_screen.dart';
+import 'package:grtabstore/ui/screens/Home/mobileHome_screen.dart';
+import 'package:grtabstore/ui/widgets/responsiveLayout.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,12 +11,10 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'GrTabStore',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      home: ResponsiveLayout(
+        mobile: MobileHomeScreen(),
+        desktop: DesktopHomeScreen(),
       ),
-      initialRoute: Routes.home,
-      onGenerateRoute: Routes.onGenerateRoute,
     );
   }
 }
