@@ -2,6 +2,7 @@ class Product {
   final int productId;
   final String name;
   final double price;
+  final double? oldPrice;
   final String? photoUrl;
   final int brandId;
   final double actifAreaX;
@@ -15,6 +16,7 @@ class Product {
     required this.brandId,
     required this.actifAreaX,
     required this.actifAreaY,
+    this.oldPrice,
   });
 
   static double _toDouble(dynamic v) {
@@ -31,6 +33,7 @@ class Product {
     brandId: (json['brandId'] as num?)?.toInt() ?? 0,
     actifAreaX: _toDouble(json['actifAreaX']),
     actifAreaY: _toDouble(json['actifAreaY']),
+    oldPrice: _toDouble(json['oldPrice']),
   );
 
   Map<String, dynamic> toJson() => {
@@ -41,5 +44,6 @@ class Product {
     'brandId': brandId,
     'actifAreaX': actifAreaX,
     'actifAreaY': actifAreaY,
+    'oldPrice': oldPrice,
   };
 }

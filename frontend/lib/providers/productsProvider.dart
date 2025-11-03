@@ -4,9 +4,11 @@ import 'package:grtabstore/data/models/product.dart';
 class ProductsProvider extends ChangeNotifier {
   List<Product> _products = [];
   List<Product> _filteredProducts = [];
+  List<Product> _shoppingCart = [];
 
   List<Product> get products => _products;
   List<Product> get filteredProducts => _filteredProducts;
+  List<Product> get shoppingCart => _shoppingCart;
 
   ProductsProvider() {
     _loadDummyData(); // automatically fill data on init
@@ -18,21 +20,22 @@ class ProductsProvider extends ChangeNotifier {
         productId: 1,
         name: 'Wacom Intuos S',
         brandId: 1,
-        price: 89.99,
+        price: 11000,
         actifAreaX: 10,
         actifAreaY: 6,
         photoUrl:
-            'https://images.unsplash.com/photo-1616469829933-2f6b394af870?w=500',
+            'https://tse1.mm.bing.net/th/id/OIP.32MekmCagQTOZ0FyXy_1sgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
       ),
       Product(
         productId: 2,
         name: 'XP-Pen Deco 01 V2',
         brandId: 2,
-        price: 69.99,
+        price: 12000,
+        oldPrice: 15000,
         actifAreaX: 10,
         actifAreaY: 6.25,
         photoUrl:
-            'https://images.unsplash.com/photo-1626894512663-c43e8a4fca25?w=500',
+            'https://tse4.mm.bing.net/th/id/OIP.ptbVKksxOMP_juVbhnCTXQHaEV?w=650&h=380&rs=1&pid=ImgDetMain&o=7&rm=3',
       ),
       Product(
         productId: 3,
@@ -77,7 +80,7 @@ class ProductsProvider extends ChangeNotifier {
       Product(
         productId: 7,
         name: 'Veikk A50',
-        brandId: 4,
+        brandId: 3,
         price: 59.99,
         actifAreaX: 10,
         actifAreaY: 6,
@@ -85,7 +88,7 @@ class ProductsProvider extends ChangeNotifier {
             'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?w=500',
       ),
       Product(
-        productId: 8,
+        productId: 2,
         name: 'Huion H950P',
         brandId: 3,
         price: 89.99,
@@ -196,4 +199,25 @@ class ProductsProvider extends ChangeNotifier {
     );
     notifyListeners();
   }
+
+  void addToShoppingCart(Product product) {
+    _shoppingCart.add(product);
+    notifyListeners();
+  }
+
+  void removeFromShoppingCart(Product product) {
+    _shoppingCart.remove(product);
+    notifyListeners();
+  }
+
+  void clearShoppingCart() {
+    _shoppingCart.clear();
+    notifyListeners();
+  }
+
+  bool isInShoppingCart(Product product) {
+    return _shoppingCart.contains(product);
+  }
+
+  int get shoppingCartItemCount => _shoppingCart.length;
 }

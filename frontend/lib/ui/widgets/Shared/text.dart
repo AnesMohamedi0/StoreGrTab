@@ -30,3 +30,35 @@ class TitlesText extends StatelessWidget {
     );
   }
 }
+
+class AbelText extends StatelessWidget {
+  final String text;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color color;
+  final bool lineThrough;
+
+  const AbelText({
+    super.key,
+    required this.text,
+    required this.fontSize,
+    this.fontWeight = FontWeight.bold,
+    this.color = Colors.black,
+    this.lineThrough = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.abel(
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        color: color,
+        decoration: lineThrough
+            ? TextDecoration.lineThrough
+            : TextDecoration.none,
+      ),
+    );
+  }
+}

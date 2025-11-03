@@ -52,7 +52,10 @@ Color textSecondary = const Color(0xFF555555); // Secondary text
 Color textTertiary = const Color(0xFF888888); // Tertiary text
 Color textOnBlue = const Color(0xFFFFFFFF); // Text on electric blue
 Color textOnPurple = const Color(0xFFFFFFFF); // Text on deep purple
-Color textOnDark = const Color(0xFFFFFFFF); // Text on dark backgrounds
+Color textOnDark = const Color(0xFFFFFFFF);
+Color textAccent = const Color(0xFF007BFF);
+Color textPrice = const Color(0xFF004C99);
+// Text on dark backgrounds
 
 // Shadow & Border Colors
 Color shadowColor = const Color(0x331A1A1A); // Subtle shadow (20% opacity)

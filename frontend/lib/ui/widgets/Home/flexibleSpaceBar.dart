@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/providers/productsProvider.dart';
+import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Home/socialMediaButton.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
+import 'package:provider/provider.dart';
 
 class CustomFlexibleSpaceContent extends StatelessWidget {
   final double collapseRatio;
@@ -13,6 +16,8 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
+    double collapseRatioInversed = 1 - collapseRatio;
 
     return Container(
       child: Stack(
@@ -97,6 +102,52 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          Consumer<ProductsProvider>(
+            builder: (context, provider, _) {
+              return Positioned(
+                top: height * 0.01,
+                right: 0,
+                child: Opacity(
+                  opacity: collapseRatioInversed.clamp(0.0, 1.0),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: SizedBox(
+                      width: width * 0.1,
+                      height: height * 0.06,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Icon(
+                            Icons.shopping_cart_rounded,
+                            color: Colors.white,
+                            size: width * 0.08,
+                          ),
+                          Positioned(
+                            top: -width * 0.02,
+                            left: width * 0.04,
+                            right: width * 0.01,
+                            child: Container(
+                              width: provider.shoppingCart.length <= 9
+                                  ? width * 0.04
+                                  : width * 0.06,
+                              height: width * 0.065,
+                              color: deepPurpleDark,
+                              alignment: Alignment.bottomCenter,
+                              child: AbelText(
+                                text: provider.shoppingCart.length.toString(),
+                                color: textOnBlue,
+                                fontSize: width * 0.04,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

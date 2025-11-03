@@ -10,7 +10,7 @@ class FiltersSpace extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: height,
-      color: deepPurpleLightest,
+      color: electricBlueLightest,
     );
   }
 }

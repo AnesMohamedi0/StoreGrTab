@@ -67,7 +67,7 @@ class MobileHomeScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   mainAxisSpacing: height * 0.015,
                   crossAxisSpacing: height * 0.015,
-                  childAspectRatio: (width * 0.4) / (height * 0.2),
+                  childAspectRatio: (width * 0.4) / (height * 0.26),
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -77,7 +77,7 @@ class MobileHomeScreen extends StatelessWidget {
                     return ProductDisplay(
                       product: product,
                       width: width * 0.4,
-                      height: height * 0.2,
+                      height: height * 0.26,
                     );
                   },
                   childCount: context
