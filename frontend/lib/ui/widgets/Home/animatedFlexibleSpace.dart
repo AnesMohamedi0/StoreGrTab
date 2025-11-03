@@ -47,15 +47,19 @@ class _AnimatedFlexibleSpaceState extends State<AnimatedFlexibleSpace>
               )!,
               radius: 1.5 + (_animation.value * 0.5),
               colors: [
-                Color.lerp(electricBlue, electricBlueLight, _animation.value)!,
                 Color.lerp(
-                  electricBlueLight,
-                  deepPurpleLighter,
+                  electricBlueDark,
+                  electricBlueDarker,
                   _animation.value,
                 )!,
                 Color.lerp(
-                  deepPurpleLighter,
-                  deepPurpleLight,
+                  electricBlueDarkest,
+                  deepPurpleDark,
+                  _animation.value,
+                )!,
+                Color.lerp(
+                  deepPurpleDarkest,
+                  deepPurpleDarker,
                   _animation.value,
                 )!,
               ],

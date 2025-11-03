@@ -11,6 +11,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'GrTabStore',
       debugShowCheckedModeBanner: false,
+
       home: ResponsiveLayout(
         mobile: MobileHomeScreen(),
         desktop: DesktopHomeScreen(),

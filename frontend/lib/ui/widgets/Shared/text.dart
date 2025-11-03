@@ -6,6 +6,7 @@ class TitlesText extends StatelessWidget {
   final double fontSize;
   final FontWeight fontWeight;
   final Color color;
+  final List<Shadow>? shadows;
 
   const TitlesText({
     super.key,
@@ -13,6 +14,7 @@ class TitlesText extends StatelessWidget {
     required this.fontSize,
     this.fontWeight = FontWeight.normal,
     this.color = Colors.white,
+    this.shadows,
   });
 
   @override
@@ -23,6 +25,7 @@ class TitlesText extends StatelessWidget {
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
+        shadows: shadows,
       ),
     );
   }
