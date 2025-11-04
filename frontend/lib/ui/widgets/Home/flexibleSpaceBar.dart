@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/animatedFlexibleSpace.dart';
+import 'package:grtabstore/ui/widgets/Home/cartModal.dart';
 import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Home/socialMediaButton.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
@@ -111,7 +112,17 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
                 child: Opacity(
                   opacity: collapseRatioInversed.clamp(0.0, 1.0),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.white,
+                        builder: (context) {
+                          return FractionallySizedBox(child: const CartModal());
+                        },
+                      );
+                    },
+
                     child: SizedBox(
                       width: width * 0.1,
                       height: height * 0.06,

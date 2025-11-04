@@ -7,6 +7,9 @@ class Product {
   final int brandId;
   final double actifAreaX;
   final double actifAreaY;
+  final bool isNew;
+  final bool isAlmostSoldOut;
+  final String? description;
 
   const Product({
     required this.productId,
@@ -17,6 +20,9 @@ class Product {
     required this.actifAreaX,
     required this.actifAreaY,
     this.oldPrice,
+    this.isNew = false,
+    this.isAlmostSoldOut = false,
+    this.description,
   });
 
   static double _toDouble(dynamic v) {
@@ -34,6 +40,9 @@ class Product {
     actifAreaX: _toDouble(json['actifAreaX']),
     actifAreaY: _toDouble(json['actifAreaY']),
     oldPrice: _toDouble(json['oldPrice']),
+    isNew: (json['isNew'] as bool?) ?? false,
+    isAlmostSoldOut: (json['isAlmostSoldOut'] as bool?) ?? false,
+    description: json['description'] as String?,
   );
 
   Map<String, dynamic> toJson() => {
@@ -45,5 +54,8 @@ class Product {
     'actifAreaX': actifAreaX,
     'actifAreaY': actifAreaY,
     'oldPrice': oldPrice,
+    'isNew': isNew,
+    'isAlmostSoldOut': isAlmostSoldOut,
+    'description': description,
   };
 }

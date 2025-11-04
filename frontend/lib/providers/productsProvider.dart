@@ -10,6 +10,10 @@ class ProductsProvider extends ChangeNotifier {
   List<Product> get filteredProducts => _filteredProducts;
   List<Product> get shoppingCart => _shoppingCart;
 
+  bool newFilter = false;
+  bool almostSoldOutFilter = false;
+  bool brandFilter = false;
+
   ProductsProvider() {
     _loadDummyData(); // automatically fill data on init
   }
@@ -23,6 +27,7 @@ class ProductsProvider extends ChangeNotifier {
         price: 11000,
         actifAreaX: 10,
         actifAreaY: 6,
+        isAlmostSoldOut: true,
         photoUrl:
             'https://tse1.mm.bing.net/th/id/OIP.32MekmCagQTOZ0FyXy_1sgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
       ),
@@ -34,6 +39,7 @@ class ProductsProvider extends ChangeNotifier {
         oldPrice: 15000,
         actifAreaX: 10,
         actifAreaY: 6.25,
+        isNew: true,
         photoUrl:
             'https://tse4.mm.bing.net/th/id/OIP.ptbVKksxOMP_juVbhnCTXQHaEV?w=650&h=380&rs=1&pid=ImgDetMain&o=7&rm=3',
       ),
@@ -155,6 +161,47 @@ class ProductsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void filterByName(String name) {
+    _filteredProducts = _products
+        .where(
+          (product) => product.name.toLowerCase().contains(name.toLowerCase()),
+        )
+        .toList();
+
+    notifyListeners();
+  }
+
+  void triggerFilterByNew() {
+    newFilter = !newFilter;
+    if (newFilter) almostSoldOutFilter = false;
+    _applyFilters();
+  }
+
+  void triggerFilterByAlmostSoldOut() {
+    almostSoldOutFilter = !almostSoldOutFilter;
+    if (almostSoldOutFilter) newFilter = false;
+    _applyFilters();
+  }
+
+  // Single method to apply all active filters
+  void _applyFilters() {
+    _filteredProducts = List.from(_products);
+
+    if (newFilter) {
+      _filteredProducts = _filteredProducts
+          .where((product) => product.isNew == true)
+          .toList();
+    }
+
+    if (almostSoldOutFilter) {
+      _filteredProducts = _filteredProducts
+          .where((product) => product.isAlmostSoldOut == true)
+          .toList();
+    }
+
+    notifyListeners();
+  }
+
   void filterByPriceRange(double minPrice, double maxPrice) {
     _filteredProducts = _products
         .where(
@@ -220,4 +267,12 @@ class ProductsProvider extends ChangeNotifier {
   }
 
   int get shoppingCartItemCount => _shoppingCart.length;
+
+  int getNumberFilters() {
+    int count = 0;
+    if (brandFilter) count++;
+    if (newFilter) count++;
+    if (almostSoldOutFilter) count++;
+    return count;
+  }
 }

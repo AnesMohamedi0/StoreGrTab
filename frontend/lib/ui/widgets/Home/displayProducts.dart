@@ -25,48 +25,67 @@ class ProductDisplay extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
         gradient: LinearGradient(
-          colors: [cardBackground, electricBlueLightest],
-          begin: Alignment.topCenter,
+          colors: [textOnBlue, cardBackgroundSecondary],
+          begin: Alignment.center,
           end: Alignment.bottomCenter,
         ),
       ),
       child: Stack(
         children: [
-          Container(
-            padding: EdgeInsets.all(width * 0.02),
-            width: double.infinity,
-            height: height * 0.8,
-            child: Image.network(product.photoUrl ?? '', fit: BoxFit.cover),
-          ),
-          Positioned(
-            left: width * 0.08,
-            bottom: height * 0.19,
-            child: AbelText(
-              text: product.name,
-              fontSize: width * 0.11,
-              fontWeight: FontWeight.bold,
-              color: textPrimary,
+          ClipPath(
+            clipper: ShapeBorderClipper(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6),
+              ),
+            ),
+            child: SizedBox(
+              width: double.infinity,
+              height: height * 0.78,
+              child: Image.network(product.photoUrl ?? '', fit: BoxFit.cover),
             ),
           ),
           Positioned(
             left: width * 0.08,
-            bottom: height * 0.09,
+            bottom: height * 0.21,
+            child: AbelText(
+              text: product.name,
+              fontSize: width * 0.105,
+              fontWeight: FontWeight.bold,
+              color: textPrimary,
+            ),
+          ),
+
+          Positioned(
+            left: width * 0.08,
+            bottom: height * 0.16,
+            child: AbelText(
+              text: '${product.actifAreaX}* ${product.actifAreaY}"',
+              fontSize: width * 0.08,
+              color: textSecondary,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+
+          Positioned(
+            left: width * 0.08,
+            bottom: height * 0.08,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 if (product.oldPrice != null)
                   AbelText(
                     text: '${product.oldPrice!.toStringAsFixed(0)} DA',
-                    fontSize: width * 0.09,
+                    fontSize: width * 0.085,
                     color: textTertiary,
                     fontWeight: FontWeight.w400,
                     lineThrough: true,
                   ),
-                SizedBox(width: width * 0.02),
+                if (product.oldPrice != null) SizedBox(width: width * 0.02),
                 AbelText(
                   text: '${product.price.toStringAsFixed(0)} DA',
-                  fontSize: width * 0.099,
+                  fontSize: width * 0.0935,
                   color: textPrice,
                   fontWeight: FontWeight.w600,
                 ),
@@ -75,19 +94,35 @@ class ProductDisplay extends StatelessWidget {
           ),
 
           Positioned(
+            top: height * 0.73,
             right: 0,
-            top: height * 0.72,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.02),
-              color: electricBlueDarker,
-              child: AbelText(
-                text: '${product.actifAreaX} x ${product.actifAreaY}"',
-                fontSize: width * 0.067,
-                color: textOnBlue,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: !product.isNew
+                ? !product.isAlmostSoldOut
+                      ? Container()
+                      : Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.02,
+                          ),
+                          color: accentWarning,
+                          child: AbelText(
+                            text: 'Almost Sold Out ...',
+                            fontSize: width * 0.067,
+                            color: textOnBlue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                : Container(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                    color: accentSuccess,
+                    child: AbelText(
+                      text: 'NEW !',
+                      fontSize: width * 0.067,
+                      color: textOnBlue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ),
+
           Positioned(
             right: width * 0.03,
             bottom: height * 0.02,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/ad.dart';
+import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
 import 'package:provider/provider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
@@ -55,37 +56,47 @@ class MobileHomeScreen extends StatelessWidget {
               ),
             ),
 
-            SliverToBoxAdapter(child: FiltersSpace(height: height * 0.15)),
+            SliverToBoxAdapter(child: FiltersSpace(height: height * 0.12)),
 
             SliverPadding(
               padding: EdgeInsets.symmetric(
                 horizontal: width * 0.03,
                 vertical: height * 0.01,
               ),
-              sliver: SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: height * 0.015,
-                  crossAxisSpacing: height * 0.015,
-                  childAspectRatio: (width * 0.4) / (height * 0.26),
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final product = context
-                        .watch<ProductsProvider>()
-                        .filteredProducts[index];
-                    return ProductDisplay(
-                      product: product,
-                      width: width * 0.4,
-                      height: height * 0.26,
-                    );
-                  },
-                  childCount: context
-                      .watch<ProductsProvider>()
-                      .filteredProducts
-                      .length,
-                ),
-              ),
+              sliver:
+                  context.watch<ProductsProvider>().filteredProducts.isNotEmpty
+                  ? SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: height * 0.015,
+                        crossAxisSpacing: height * 0.015,
+                        childAspectRatio: (width * 0.4) / (height * 0.3),
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          final product = context
+                              .watch<ProductsProvider>()
+                              .filteredProducts[index];
+                          return ProductDisplay(
+                            product: product,
+                            width: width * 0.4,
+                            height: height * 0.3,
+                          );
+                        },
+                        childCount: context
+                            .watch<ProductsProvider>()
+                            .filteredProducts
+                            .length,
+                      ),
+                    )
+                  : Container(
+                      height: height * 0.3,
+                      alignment: Alignment.center,
+                      child: AbelText(
+                        text: 'No products found with the applied filters.',
+                        fontSize: width * 0.05,
+                      ),
+                    ),
             ),
           ],
         ),

@@ -36,15 +36,21 @@ Color primaryBackground = const Color(0xFFF8FBFF); // Very light blue-white
 Color secondaryBackground = const Color(0xFFF2EDFF); // Soft violet-white
 Color surfaceBackground = const Color(0xFFFFFFFF); // Pure white surface
 Color darkBackground = const Color(0xFF0A0629); // Deep dark indigo background
-Color cardBackground = const Color(0xFFF5F7FF); // Card background
+Color cardBackground = const Color(0xFFF5F7FF);
+Color cardBackgroundSecondary = const Color.fromARGB(255, 235, 235, 235);
 
 // Accent Colors
 Color accentPrimary = const Color(0xFF00E5FF); // Electric Cyan accent
 Color accentSecondary = const Color(0xFFFF2CF5); // Vibrant magenta accent
 Color accentTertiary = const Color(0xFF00E676); // Neon green accent
-Color accentWarning = const Color(0xFFFFB300); // Warm amber warning
+Color accentWarning = const Color.fromARGB(
+  255,
+  156,
+  95,
+  2,
+); // Warm amber warning
 Color accentError = const Color(0xFFFF5252); // Error red
-Color accentSuccess = const Color(0xFF4CAF50); // Success green
+Color accentSuccess = const Color.fromARGB(255, 22, 134, 26); // Success green
 
 // Text Colors
 Color textPrimary = const Color(0xFF1A1A1A); // Primary text
