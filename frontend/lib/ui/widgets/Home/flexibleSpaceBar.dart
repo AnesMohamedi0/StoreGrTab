@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/animatedFlexibleSpace.dart';
@@ -104,7 +105,7 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
               ),
             ),
           ),
-          Consumer<ProductsProvider>(
+          Consumer<CartProvider>(
             builder: (context, provider, _) {
               return Positioned(
                 top: height * 0.01,
@@ -122,7 +123,6 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
                         },
                       );
                     },
-
                     child: SizedBox(
                       width: width * 0.1,
                       height: height * 0.06,
@@ -139,14 +139,14 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
                             left: width * 0.04,
                             right: width * 0.01,
                             child: Container(
-                              width: provider.shoppingCart.length <= 9
+                              width: provider.getTotalItems() <= 9
                                   ? width * 0.04
                                   : width * 0.06,
                               height: width * 0.065,
                               color: deepPurpleDark,
                               alignment: Alignment.bottomCenter,
                               child: AbelText(
-                                text: provider.shoppingCart.length.toString(),
+                                text: provider.getTotalItems().toString(),
                                 color: textOnBlue,
                                 fontSize: width * 0.04,
                               ),

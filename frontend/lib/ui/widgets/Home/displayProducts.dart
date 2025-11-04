@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/brand.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/providers/brandsProvider.dart';
-import 'package:grtabstore/providers/productsProvider.dart';
+import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/brandDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
@@ -140,34 +140,44 @@ class ProductDisplay extends StatelessWidget {
             right: width * 0,
             top: height * 0,
             child: IconButton(
-              onPressed:
-                  !Provider.of<ProductsProvider>(
-                    context,
-                    listen: false,
-                  ).isInShoppingCart(product)
-                  ? () {
-                      Provider.of<ProductsProvider>(
-                        context,
-                        listen: false,
-                      ).addToShoppingCart(product);
-                    }
-                  : () {
-                      Provider.of<ProductsProvider>(
-                        context,
-                        listen: false,
-                      ).removeFromShoppingCart(product);
-                    },
+              onPressed: () {
+                Provider.of<CartProvider>(
+                  context,
+                  listen: false,
+                ).addProduct(product);
+              },
               icon: Icon(
-                !Provider.of<ProductsProvider>(
-                      context,
-                      listen: false,
-                    ).isInShoppingCart(product)
-                    ? Icons.add_shopping_cart_rounded
-                    : Icons.remove_shopping_cart,
+                Icons.add_shopping_cart_rounded,
                 color: deepPurpleDarkest,
                 size: width * 0.15,
               ),
             ),
+          ),
+
+          Consumer<CartProvider>(
+            builder: (context, provider, _) {
+              if (!provider.isInCart(product)) {
+                return Container();
+              }
+
+              return Positioned(
+                right: width * 0,
+                top: height * 0,
+                child: Container(
+                  width: provider.getProductQuantity(product) <= 9
+                      ? width * 0.07
+                      : width * 0.1,
+                  height: width * 0.065,
+                  color: deepPurpleDark,
+                  alignment: Alignment.bottomCenter,
+                  child: AbelText(
+                    text: provider.getProductQuantity(product).toString(),
+                    color: textOnBlue,
+                    fontSize: width * 0.05,
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

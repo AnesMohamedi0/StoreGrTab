@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
+import 'package:grtabstore/ui/widgets/Home/ProductHorizontalDisplay.dart';
+import 'package:grtabstore/ui/widgets/Home/filterSortButton.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +22,9 @@ class CartModal extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       width: width,
-      child: Consumer<ProductsProvider>(
+      child: Consumer<CartProvider>(
         builder: (context, provider, _) {
-          if (provider.shoppingCart.isEmpty) {
+          if (provider.products.isEmpty) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -61,27 +64,56 @@ class CartModal extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: height * 0.02),
-                Container(
-                  height: height * 0.3,
-                  child: ListView.builder(
-                    itemCount: provider.shoppingCart.length,
-                    itemBuilder: (context, index) {
-                      final product = provider.shoppingCart[index];
-                      return ListTile(
-                        leading: Image.network(
-                          product.photoUrl ?? '',
-                          width: width * 0.1,
-                          height: width * 0.1,
-                          fit: BoxFit.cover,
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: provider.products.length,
+                  itemBuilder: (context, index) {
+                    final product = provider.products[index];
+                    final item = product.$1;
+                    final quantity = product.$2;
+
+                    return ProductHorizontalDisplay(
+                      product: item,
+                      height: height * 0.09,
+                      count: quantity,
+                    );
+                  },
+                ),
+
+                SizedBox(height: height * 0.035),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        AbelText(
+                          text: 'Total Price:',
+                          fontSize: width * 0.042,
+                          fontWeight: FontWeight.bold,
+                          color: textSecondary,
                         ),
-                        title: AbelText(
-                          text: product.name,
-                          fontSize: width * 0.045,
-                          fontWeight: FontWeight.w500,
+                        SizedBox(width: width * 0.03),
+                        AbelText(
+                          text:
+                              '${provider.getTotalPrice().toStringAsFixed(0)} DA',
+                          fontSize: width * 0.042,
+                          fontWeight: FontWeight.bold,
+                          color: textPrimary,
                         ),
-                      );
-                    },
-                  ),
+                      ],
+                    ),
+
+                    FilterSortButton(
+                      label: 'CheckOut',
+                      icon: Icon(
+                        Icons.arrow_forward_ios_sharp,
+                        color: textOnDark,
+                        size: width * 0.05,
+                      ),
+                      function: () {},
+                      size: width * 0.12,
+                    ),
+                  ],
                 ),
               ],
             );

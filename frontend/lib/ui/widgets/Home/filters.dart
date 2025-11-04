@@ -28,7 +28,7 @@ class FiltersSpace extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: height * 0.3),
+          SizedBox(height: height * 0.15),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

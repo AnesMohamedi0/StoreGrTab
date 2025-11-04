@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grtabstore/providers/brandsProvider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';

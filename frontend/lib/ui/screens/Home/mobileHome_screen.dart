@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/ad.dart';
+import 'package:grtabstore/providers/adsProvider.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
 import 'package:provider/provider.dart';
@@ -29,13 +30,13 @@ class MobileHomeScreen extends StatelessWidget {
               backgroundColor: electricBlueDarkest,
               shadowColor: Colors.black54,
               elevation: 24.0,
-              expandedHeight: height * 0.55,
+              expandedHeight: height * 0.4,
               collapsedHeight: height * 0.08,
               flexibleSpace: LayoutBuilder(
                 builder: (context, constraints) {
                   double collapseRatio =
                       (constraints.maxHeight - kToolbarHeight) /
-                      (height * 0.55 - kToolbarHeight);
+                      (height * 0.4 - kToolbarHeight);
                   return CustomFlexibleSpaceContent(
                     collapseRatio: collapseRatio,
                   );
@@ -45,14 +46,8 @@ class MobileHomeScreen extends StatelessWidget {
 
             SliverToBoxAdapter(
               child: Adspace(
+                ads: context.watch<AdsProvider>().getAds(),
                 height: height * 0.3,
-                ad: Ad(
-                  id: '1',
-                  title: 'Sample Ad',
-                  imageUrl:
-                      'https://tse4.mm.bing.net/th/id/OIP.mEUH82pqJxMY7ds4egrwCAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
-                  link: 'https://facebook.com',
-                ),
               ),
             ),
 
