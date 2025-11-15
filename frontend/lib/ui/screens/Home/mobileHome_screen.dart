@@ -8,7 +8,7 @@ import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/adSpace.dart';
 import 'package:grtabstore/ui/widgets/Home/displayProducts.dart';
-import 'package:grtabstore/ui/widgets/Home/filters.dart';
+import 'package:grtabstore/ui/widgets/Home/Filters/filters.dart';
 import 'package:grtabstore/ui/widgets/Home/flexibleSpaceBar.dart';
 import 'package:grtabstore/ui/widgets/Shared/menuButton.dart';
 

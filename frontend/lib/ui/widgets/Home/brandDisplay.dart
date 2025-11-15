@@ -5,7 +5,13 @@ import 'package:grtabstore/ui/widgets/Shared/text.dart';
 class BrandDisplay extends StatelessWidget {
   final Brand brand;
   final double width;
-  const BrandDisplay({super.key, required this.brand, required this.width});
+  final Color color;
+  const BrandDisplay({
+    super.key,
+    required this.brand,
+    required this.width,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +21,7 @@ class BrandDisplay extends StatelessWidget {
           text: brand.name,
           fontSize: width * 0.065,
           fontWeight: FontWeight.bold,
+          color: color,
         ),
         SizedBox(width: width * 0.01),
         SizedBox(

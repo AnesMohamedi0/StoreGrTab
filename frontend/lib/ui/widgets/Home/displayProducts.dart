@@ -5,6 +5,7 @@ import 'package:grtabstore/providers/brandsProvider.dart';
 import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/brandDisplay.dart';
+import 'package:grtabstore/ui/widgets/Home/newAlmost.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -99,27 +100,15 @@ class ProductDisplay extends StatelessWidget {
             child: !product.isNew
                 ? !product.isAlmostSoldOut
                       ? Container()
-                      : Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.02,
-                          ),
+                      : NewAlmostSoldOut(
                           color: accentWarning,
-                          child: AbelText(
-                            text: 'Almost Sold Out ...',
-                            fontSize: width * 0.067,
-                            color: textOnBlue,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          width: width * 0.07,
+                          text: ' Almost Sold Out ... ',
                         )
-                : Container(
-                    padding: EdgeInsets.symmetric(horizontal: width * 0.02),
+                : NewAlmostSoldOut(
                     color: accentSuccess,
-                    child: AbelText(
-                      text: 'NEW !',
-                      fontSize: width * 0.067,
-                      color: textOnBlue,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    width: width * 0.07,
+                    text: " NEW ! ",
                   ),
           ),
 
@@ -134,6 +123,7 @@ class ProductDisplay extends StatelessWidget {
                   ).getBrandById(product.brandId) ??
                   Brand(brandId: 0, name: ''),
               width: width,
+              color: textOnDark,
             ),
           ),
           Positioned(

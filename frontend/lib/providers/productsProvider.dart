@@ -12,7 +12,7 @@ class ProductsProvider extends ChangeNotifier {
 
   bool newFilter = false;
   bool almostSoldOutFilter = false;
-  bool brandFilter = false;
+  List<int> brandFilter = [];
 
   ProductsProvider() {
     _loadDummyData(); // automatically fill data on init
@@ -149,11 +149,14 @@ class ProductsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void filterByBrand(int brandId) {
-    _filteredProducts = _products
-        .where((product) => product.brandId == brandId)
-        .toList();
-    notifyListeners();
+  void filterByBrandId(int brandId) {
+    brandFilter.add(brandId);
+    _applyFilters(); // Use the unified filter method
+  }
+
+  void clearFilterByBrand(int brandId) {
+    brandFilter.remove(brandId);
+    _applyFilters();
   }
 
   void clearFilter() {
@@ -186,6 +189,12 @@ class ProductsProvider extends ChangeNotifier {
   // Single method to apply all active filters
   void _applyFilters() {
     _filteredProducts = List.from(_products);
+
+    if (brandFilter.isNotEmpty) {
+      _filteredProducts = _filteredProducts
+          .where((product) => brandFilter.contains(product.brandId))
+          .toList();
+    }
 
     if (newFilter) {
       _filteredProducts = _filteredProducts
@@ -270,7 +279,7 @@ class ProductsProvider extends ChangeNotifier {
 
   int getNumberFilters() {
     int count = 0;
-    if (brandFilter) count++;
+    if (brandFilter.isNotEmpty) count++;
     if (newFilter) count++;
     if (almostSoldOutFilter) count++;
     return count;
