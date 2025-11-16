@@ -4,7 +4,9 @@ import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/brandFilter.dart';
-import 'package:grtabstore/ui/widgets/Home/newAlmost.dart';
+import 'package:grtabstore/ui/widgets/Home/Filters/priceFilter.dart';
+import 'package:grtabstore/ui/widgets/Home/Filters/statueFilter.dart';
+import 'package:grtabstore/ui/widgets/Home/Product/newAlmost.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -37,55 +39,28 @@ class _FilterSheetState extends State<FilterSheet> {
       ),
       child: Column(
         children: [
-          AbelText(
-            text: "Filter Options",
-            fontSize: width * 0.06,
-            fontWeight: FontWeight.bold,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.filter_alt_sharp,
+                size: width * 0.08,
+                color: textPrimary,
+              ),
+              AbelText(
+                text: "Filter Options",
+                fontSize: width * 0.06,
+                fontWeight: FontWeight.bold,
+              ),
+            ],
           ),
           SizedBox(height: height * 0.02),
           BrandFilter(),
           SizedBox(height: height * 0.02),
+          StatueFilter(),
 
-          Row(
-            children: [
-              AbelText(text: "Status :", fontSize: width * 0.05),
-              Expanded(
-                child: Consumer<ProductsProvider>(
-                  builder: (context, provider, child) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Checkbox(
-                          value: provider.newFilter,
-                          onChanged: (value) {
-                            provider.triggerFilterByNew();
-                          },
-                        ),
-                        NewAlmostSoldOut(
-                          color: accentSuccess,
-                          width: width * 0.04,
-                          text: ' New ! ',
-                        ),
-                        SizedBox(width: width * 0.05),
-                        Checkbox(
-                          value: provider.almostSoldOutFilter,
-                          onChanged: (value) {
-                            provider.triggerFilterByAlmostSoldOut();
-                          },
-                        ),
-                        NewAlmostSoldOut(
-                          color: accentWarning,
-                          width: width * 0.04,
-                          text: ' Almost Sold Out ... ',
-                        ),
-                        SizedBox(width: width * 0.05),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+          SizedBox(height: height * 0.02),
+          PriceFilter(),
         ],
       ),
     );

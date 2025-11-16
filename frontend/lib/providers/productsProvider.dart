@@ -10,9 +10,9 @@ class ProductsProvider extends ChangeNotifier {
   List<Product> get filteredProducts => _filteredProducts;
   List<Product> get shoppingCart => _shoppingCart;
 
-  bool newFilter = false;
-  bool almostSoldOutFilter = false;
+  int statueFilter = 0;
   List<int> brandFilter = [];
+  (double, double) priceRangeFilter = (0.0, double.infinity);
 
   ProductsProvider() {
     _loadDummyData(); // automatically fill data on init
@@ -175,14 +175,22 @@ class ProductsProvider extends ChangeNotifier {
   }
 
   void triggerFilterByNew() {
-    newFilter = !newFilter;
-    if (newFilter) almostSoldOutFilter = false;
+    statueFilter = 1;
     _applyFilters();
   }
 
   void triggerFilterByAlmostSoldOut() {
-    almostSoldOutFilter = !almostSoldOutFilter;
-    if (almostSoldOutFilter) newFilter = false;
+    statueFilter = 2;
+    _applyFilters();
+  }
+
+  void removeStatueFilter() {
+    statueFilter = 0;
+    _applyFilters();
+  }
+
+  void filterByPriceRange(double minPrice, double maxPrice) {
+    priceRangeFilter = (minPrice, maxPrice);
     _applyFilters();
   }
 
@@ -196,27 +204,28 @@ class ProductsProvider extends ChangeNotifier {
           .toList();
     }
 
-    if (newFilter) {
+    if (statueFilter == 1) {
       _filteredProducts = _filteredProducts
           .where((product) => product.isNew == true)
           .toList();
     }
 
-    if (almostSoldOutFilter) {
+    if (statueFilter == 2) {
       _filteredProducts = _filteredProducts
           .where((product) => product.isAlmostSoldOut == true)
           .toList();
     }
 
-    notifyListeners();
-  }
+    if (priceRangeFilter.$1 != 0.0 || priceRangeFilter.$2 != double.infinity) {
+      _filteredProducts = _filteredProducts
+          .where(
+            (product) =>
+                product.price >= priceRangeFilter.$1 &&
+                product.price <= priceRangeFilter.$2,
+          )
+          .toList();
+    }
 
-  void filterByPriceRange(double minPrice, double maxPrice) {
-    _filteredProducts = _products
-        .where(
-          (product) => product.price >= minPrice && product.price <= maxPrice,
-        )
-        .toList();
     notifyListeners();
   }
 
@@ -280,8 +289,18 @@ class ProductsProvider extends ChangeNotifier {
   int getNumberFilters() {
     int count = 0;
     if (brandFilter.isNotEmpty) count++;
-    if (newFilter) count++;
-    if (almostSoldOutFilter) count++;
+    if (statueFilter != 0) count++;
+    if (priceRangeFilter.$1 != 0.0 || priceRangeFilter.$2 != double.infinity)
+      count++;
+
     return count;
+  }
+
+  double? getMinPriceFilter() {
+    return priceRangeFilter.$1;
+  }
+
+  double? getMaxPriceFilter() {
+    return priceRangeFilter.$2;
   }
 }

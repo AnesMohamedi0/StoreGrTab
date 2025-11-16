@@ -31,15 +31,6 @@ class BrandsProvider extends ChangeNotifier {
     ];
   }
 
-  List<String> getBrandsNames() {
-    List<String> brandNames = [];
-    brandNames.add('ALL');
-    for (var brand in brands) {
-      brandNames.add(brand.name);
-    }
-    return brandNames;
-  }
-
   void setBrands(List<Brand> newBrands) {
     brands = newBrands;
     notifyListeners();

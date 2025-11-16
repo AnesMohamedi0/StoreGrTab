@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/brand.dart';
+import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
 class BrandDisplay extends StatelessWidget {
   final Brand brand;
   final double width;
-  final Color color;
-  const BrandDisplay({
-    super.key,
-    required this.brand,
-    required this.width,
-    required this.color,
-  });
+  const BrandDisplay({super.key, required this.brand, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +16,7 @@ class BrandDisplay extends StatelessWidget {
           text: brand.name,
           fontSize: width * 0.065,
           fontWeight: FontWeight.bold,
-          color: color,
+          color: textPrimary,
         ),
         SizedBox(width: width * 0.01),
         SizedBox(

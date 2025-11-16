@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/adSpace.dart';
-import 'package:grtabstore/ui/widgets/Home/displayProducts.dart';
+import 'package:grtabstore/ui/widgets/Home/Product/displayProducts.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filters.dart';
 import 'package:grtabstore/ui/widgets/Home/flexibleSpaceBar.dart';
 import 'package:grtabstore/ui/widgets/Shared/menuButton.dart';
@@ -84,12 +84,33 @@ class MobileHomeScreen extends StatelessWidget {
                             .length,
                       ),
                     )
-                  : Container(
-                      height: height * 0.3,
-                      alignment: Alignment.center,
-                      child: AbelText(
-                        text: 'No products found with the applied filters.',
-                        fontSize: width * 0.05,
+                  : SliverToBoxAdapter(
+                      // ✅ Wrap Container in SliverToBoxAdapter
+                      child: Container(
+                        height: height * 0.3,
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.inventory_2_outlined,
+                              size: width * 0.15,
+                              color: Colors.grey[400],
+                            ),
+                            SizedBox(height: height * 0.02),
+                            AbelText(
+                              text: 'No products found',
+                              fontSize: width * 0.045,
+                              color: Colors.grey[600]!,
+                            ),
+                            SizedBox(height: height * 0.01),
+                            AbelText(
+                              text: 'Try adjusting your filters',
+                              fontSize: width * 0.035,
+                              color: Colors.grey[500]!,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
             ),

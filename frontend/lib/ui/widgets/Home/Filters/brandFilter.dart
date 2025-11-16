@@ -58,8 +58,9 @@ class BrandFilter extends StatelessWidget {
                       brand.brandId,
                     );
 
-                    return GestureDetector(
-                      onTap: () {
+                    return TextButton(
+                      style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                      onPressed: () {
                         // Toggle brand filter
                         if (isSelected) {
                           productsProvider.clearFilterByBrand(brand.brandId);
@@ -69,12 +70,16 @@ class BrandFilter extends StatelessWidget {
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: height * 0.02,
+                          horizontal: width * 0.06,
                           vertical: width * 0.01,
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: isSelected ? deepPurple : textPrimary,
+                          color: productsProvider.brandFilter.isEmpty
+                              ? textPrimary
+                              : !isSelected
+                              ? textSecondary
+                              : textPrimary,
                         ),
                         child: AbelText(
                           text: brand.name,
