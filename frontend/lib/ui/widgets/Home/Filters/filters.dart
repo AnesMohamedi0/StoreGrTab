@@ -3,6 +3,7 @@ import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filterSortButton.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filtersheet.dart';
+import 'package:grtabstore/ui/widgets/Home/Sort/sortSheet.dart';
 import 'package:grtabstore/ui/widgets/Home/searchBar.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +62,20 @@ class FiltersSpace extends StatelessWidget {
               FilterSortButton(
                 label: 'Sort',
                 icon: Icon(Icons.sort, color: textOnDark, size: height * 0.32),
-                function: () {},
+                function: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true, // full-height if needed
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                    ),
+                    builder: (context) {
+                      return const SortSheet();
+                    },
+                  );
+                },
                 size: height * 0.7,
               ),
             ],

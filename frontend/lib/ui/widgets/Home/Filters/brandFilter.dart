@@ -70,22 +70,19 @@ class BrandFilter extends StatelessWidget {
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.06,
+                          horizontal: width * 0.05,
                           vertical: width * 0.01,
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: productsProvider.brandFilter.isEmpty
-                              ? textPrimary
-                              : !isSelected
-                              ? textSecondary
-                              : textPrimary,
+                          border: Border.all(color: textPrimary, width: 1.5),
+                          color: !isSelected ? Colors.transparent : textPrimary,
                         ),
                         child: AbelText(
                           text: brand.name,
                           fontSize: height * 0.02,
                           fontWeight: FontWeight.bold,
-                          color: textOnDark,
+                          color: !isSelected ? textPrimary : textOnDark,
                         ),
                       ),
                     );

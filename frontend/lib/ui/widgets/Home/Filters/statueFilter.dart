@@ -37,17 +37,18 @@ class StatueFilter extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: (provider.statueFilter == 0)
-                            ? textPrimary
-                            : provider.statueFilter != 1
-                            ? textSecondary
+                        border: Border.all(color: textPrimary, width: 1.5),
+                        color: provider.statueFilter != 1
+                            ? Colors.transparent
                             : textPrimary,
                       ),
                       child: AbelText(
                         text: 'NEW',
                         fontSize: width * 0.035,
                         fontWeight: FontWeight.bold,
-                        color: textOnDark,
+                        color: provider.statueFilter != 1
+                            ? textPrimary
+                            : textOnDark,
                       ),
                     ),
                   ),
@@ -70,17 +71,18 @@ class StatueFilter extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: (provider.statueFilter == 0)
-                            ? textPrimary
-                            : provider.statueFilter != 2
-                            ? textSecondary
+                        border: Border.all(color: textPrimary, width: 1.5),
+                        color: provider.statueFilter != 2
+                            ? Colors.transparent
                             : textPrimary,
                       ),
                       child: AbelText(
                         text: 'ALMOST SOLD OUT',
                         fontSize: width * 0.035,
                         fontWeight: FontWeight.bold,
-                        color: textOnDark,
+                        color: provider.statueFilter != 2
+                            ? textPrimary
+                            : textOnDark,
                       ),
                     ),
                   ),

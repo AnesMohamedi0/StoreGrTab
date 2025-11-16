@@ -10,9 +10,12 @@ class ProductsProvider extends ChangeNotifier {
   List<Product> get filteredProducts => _filteredProducts;
   List<Product> get shoppingCart => _shoppingCart;
 
+  int sortOption = 0; // 0: None, 1: Price Asc, 2: Price Desc, etc.
+
   int statueFilter = 0;
   List<int> brandFilter = [];
   (double, double) priceRangeFilter = (0.0, double.infinity);
+  (double, double) sizeRangeFilter = (0.0, double.infinity);
 
   ProductsProvider() {
     _loadDummyData(); // automatically fill data on init
@@ -194,6 +197,19 @@ class ProductsProvider extends ChangeNotifier {
     _applyFilters();
   }
 
+  void filterBySizeRange(double minSize, double maxSize) {
+    sizeRangeFilter = (minSize, maxSize);
+    _applyFilters();
+  }
+
+  void clearAllFilter() {
+    brandFilter.clear();
+    statueFilter = 0;
+    priceRangeFilter = (0.0, double.infinity);
+    sizeRangeFilter = (0.0, double.infinity);
+    _applyFilters();
+  }
+
   // Single method to apply all active filters
   void _applyFilters() {
     _filteredProducts = List.from(_products);
@@ -226,6 +242,16 @@ class ProductsProvider extends ChangeNotifier {
           .toList();
     }
 
+    if (sizeRangeFilter.$1 != 0.0 || sizeRangeFilter.$2 != double.infinity) {
+      _filteredProducts = _filteredProducts
+          .where(
+            (product) =>
+                product.actifAreaX >= sizeRangeFilter.$1 &&
+                product.actifAreaY <= sizeRangeFilter.$2,
+          )
+          .toList();
+    }
+
     notifyListeners();
   }
 
@@ -240,6 +266,7 @@ class ProductsProvider extends ChangeNotifier {
   }
 
   void sortByPrice({bool ascending = true}) {
+    sortOption = ascending ? 1 : 2;
     _filteredProducts.sort(
       (a, b) =>
           ascending ? a.price.compareTo(b.price) : b.price.compareTo(a.price),
@@ -248,6 +275,7 @@ class ProductsProvider extends ChangeNotifier {
   }
 
   void sortByName({bool ascending = true}) {
+    sortOption = ascending ? 3 : 4;
     _filteredProducts.sort(
       (a, b) => ascending
           ? a.productId.compareTo(b.productId)
@@ -257,6 +285,7 @@ class ProductsProvider extends ChangeNotifier {
   }
 
   void sortByActifAreaX({bool ascending = true}) {
+    sortOption = ascending ? 5 : 6;
     _filteredProducts.sort(
       (a, b) => ascending
           ? a.actifAreaX.compareTo(b.actifAreaX)
@@ -292,6 +321,8 @@ class ProductsProvider extends ChangeNotifier {
     if (statueFilter != 0) count++;
     if (priceRangeFilter.$1 != 0.0 || priceRangeFilter.$2 != double.infinity)
       count++;
+    if (sizeRangeFilter.$1 != 0.0 || sizeRangeFilter.$2 != double.infinity)
+      count++;
 
     return count;
   }
@@ -302,5 +333,13 @@ class ProductsProvider extends ChangeNotifier {
 
   double? getMaxPriceFilter() {
     return priceRangeFilter.$2;
+  }
+
+  double? getMinSizeFilter() {
+    return sizeRangeFilter.$1;
+  }
+
+  double? getMaxSizeFilter() {
+    return sizeRangeFilter.$2;
   }
 }

@@ -5,28 +5,28 @@ import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
-class PriceFilter extends StatefulWidget {
-  const PriceFilter({super.key});
+class SizeFilter extends StatefulWidget {
+  const SizeFilter({super.key});
 
   @override
-  State<PriceFilter> createState() => _PriceFilterState();
+  State<SizeFilter> createState() => _SizeFilterState();
 }
 
-class _PriceFilterState extends State<PriceFilter> {
-  late TextEditingController _minPriceController;
-  late TextEditingController _maxPriceController;
+class _SizeFilterState extends State<SizeFilter> {
+  late TextEditingController _minSizeController;
+  late TextEditingController _maxSizeController;
 
   @override
   void initState() {
     super.initState();
-    _minPriceController = TextEditingController();
-    _maxPriceController = TextEditingController();
+    _minSizeController = TextEditingController();
+    _maxSizeController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _minPriceController.dispose();
-    _maxPriceController.dispose();
+    _minSizeController.dispose();
+    _maxSizeController.dispose();
     super.dispose();
   }
 
@@ -36,13 +36,13 @@ class _PriceFilterState extends State<PriceFilter> {
 
     // Load saved values from provider
     final provider = Provider.of<ProductsProvider>(context, listen: false);
-    double minPrice = provider.getMinPriceFilter() ?? 0.0;
-    double maxPrice = provider.getMaxPriceFilter() ?? double.infinity;
+    double minSize = provider.getMinSizeFilter() ?? 0.0;
+    double maxSize = provider.getMaxSizeFilter() ?? double.infinity;
 
-    _minPriceController.text = minPrice == 0.0 ? '' : minPrice.toString();
-    _maxPriceController.text = maxPrice == double.infinity
+    _minSizeController.text = minSize == 0.0 ? '' : minSize.toString();
+    _maxSizeController.text = maxSize == double.infinity
         ? ''
-        : maxPrice.toString();
+        : maxSize.toString();
   }
 
   @override
@@ -52,26 +52,26 @@ class _PriceFilterState extends State<PriceFilter> {
 
     return Row(
       children: [
-        AbelText(text: "Price :", fontSize: width * 0.05),
+        AbelText(text: "Size :", fontSize: width * 0.05),
         Expanded(
           child: Consumer<ProductsProvider>(
             builder: (context, provider, _) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  // Min Price Field
+                  // Min Size Field
                   AbelText(text: "From", fontSize: width * 0.04),
                   SizedBox(width: width * 0.02),
 
-                  _buildPriceField(
-                    controller: _minPriceController,
+                  _buildSizeField(
+                    controller: _minSizeController,
                     hint: 'Min',
                     width: width,
                     height: height,
                     onChanged: (value) {
-                      provider.filterByPriceRange(
-                        double.tryParse(_minPriceController.text) ?? 0.0,
-                        double.tryParse(_maxPriceController.text) ??
+                      provider.filterBySizeRange(
+                        double.tryParse(_minSizeController.text) ?? 0.0,
+                        double.tryParse(_maxSizeController.text) ??
                             double.infinity,
                       );
                     },
@@ -81,16 +81,16 @@ class _PriceFilterState extends State<PriceFilter> {
                   AbelText(text: "To", fontSize: width * 0.04),
                   SizedBox(width: width * 0.02),
 
-                  // Max Price Field
-                  _buildPriceField(
-                    controller: _maxPriceController,
+                  // Max Size Field
+                  _buildSizeField(
+                    controller: _maxSizeController,
                     hint: 'Max',
                     width: width,
                     height: height,
                     onChanged: (value) {
-                      provider.filterByPriceRange(
-                        double.tryParse(_minPriceController.text) ?? 0.0,
-                        double.tryParse(_maxPriceController.text) ??
+                      provider.filterBySizeRange(
+                        double.tryParse(_minSizeController.text) ?? 0.0,
+                        double.tryParse(_maxSizeController.text) ??
                             double.infinity,
                       );
                     },
@@ -104,7 +104,7 @@ class _PriceFilterState extends State<PriceFilter> {
     );
   }
 
-  Widget _buildPriceField({
+  Widget _buildSizeField({
     required TextEditingController controller,
     required String hint,
     required double width,
@@ -138,7 +138,7 @@ class _PriceFilterState extends State<PriceFilter> {
         onChanged: onChanged,
         decoration: InputDecoration(
           border: InputBorder.none,
-          suffixText: "DA",
+          suffixText: '"',
           suffixStyle: TextStyle(fontSize: width * 0.035, color: textPrimary),
           hintText: hint,
           hintStyle: TextStyle(fontSize: width * 0.03, color: textPrimary),
