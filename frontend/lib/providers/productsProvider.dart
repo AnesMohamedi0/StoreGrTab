@@ -10,7 +10,7 @@ class ProductsProvider extends ChangeNotifier {
   List<Product> get filteredProducts => _filteredProducts;
   List<Product> get shoppingCart => _shoppingCart;
 
-  int sortOption = 0; // 0: None, 1: Price Asc, 2: Price Desc, etc.
+  int sortOption = 1;
 
   int statueFilter = 0;
   List<int> brandFilter = [];
@@ -18,7 +18,8 @@ class ProductsProvider extends ChangeNotifier {
   (double, double) sizeRangeFilter = (0.0, double.infinity);
 
   ProductsProvider() {
-    _loadDummyData(); // automatically fill data on init
+    _loadDummyData();
+    sortByPrice(ascending: false);
   }
 
   void _loadDummyData() {
@@ -266,7 +267,7 @@ class ProductsProvider extends ChangeNotifier {
   }
 
   void sortByPrice({bool ascending = true}) {
-    sortOption = ascending ? 1 : 2;
+    sortOption = ascending ? 2 : 1;
     _filteredProducts.sort(
       (a, b) =>
           ascending ? a.price.compareTo(b.price) : b.price.compareTo(a.price),
@@ -291,6 +292,12 @@ class ProductsProvider extends ChangeNotifier {
           ? a.actifAreaX.compareTo(b.actifAreaX)
           : b.actifAreaX.compareTo(a.actifAreaX),
     );
+    notifyListeners();
+  }
+
+  void clearSortOptions() {
+    sortOption = 1;
+    sortByPrice(ascending: true);
     notifyListeners();
   }
 

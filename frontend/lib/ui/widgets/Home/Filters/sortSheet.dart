@@ -53,7 +53,9 @@ class _SortSheetState extends State<SortSheet> {
               ),
               SizedBox(width: width * 0.05),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<ProductsProvider>().clearSortOptions();
+                },
                 icon: Icon(
                   Icons.rotate_left_sharp,
                   size: width * 0.08,
@@ -65,71 +67,81 @@ class _SortSheetState extends State<SortSheet> {
           SizedBox(height: height * 0.03),
           SizedBox(
             width: double.infinity,
-            child: Column(
-              spacing: height * 0.01,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SortButton(
-                  size: width,
-                  ascending: true,
-                  label: "Price: Low to High",
-                  function: () {
-                    context.read<ProductsProvider>().sortByPrice(
-                      ascending: true,
-                    );
-                  },
-                ),
-                SortButton(
-                  size: width,
-                  ascending: false,
-                  label: "Price: High to Low",
-                  function: () {
-                    context.read<ProductsProvider>().sortByPrice(
+            child: Consumer<ProductsProvider>(
+              builder: (context, productsProvider, child) {
+                return Column(
+                  spacing: height * 0.01,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SortButton(
+                      size: width,
                       ascending: false,
-                    );
-                  },
-                ),
-                SortButton(
-                  size: width,
-                  ascending: true,
-                  label: "Size: Small to Large",
-                  function: () {
-                    context.read<ProductsProvider>().sortByActifAreaX(
+                      label: "Price: High to Low",
+                      function: () {
+                        context.read<ProductsProvider>().sortByPrice(
+                          ascending: false,
+                        );
+                      },
+                      isSelected: productsProvider.sortOption == 2,
+                    ),
+                    SortButton(
+                      size: width,
                       ascending: true,
-                    );
-                  },
-                ),
-                SortButton(
-                  size: width,
-                  ascending: false,
-                  label: "Size: Large to Small",
-                  function: () {
-                    context.read<ProductsProvider>().sortByActifAreaX(
-                      ascending: false,
-                    );
-                  },
-                ),
-                SortButton(
-                  size: width,
-                  ascending: false,
-                  label: "Name: A to Z",
-                  function: () {
-                    context.read<ProductsProvider>().sortByName(
-                      ascending: false,
-                    );
-                  },
-                ),
-                SortButton(
-                  size: width,
-                  ascending: true,
-                  label: "Name: Z to A",
-                  function: () {
-                    context.read<ProductsProvider>().sortByName(
+                      label: "Price: Low to High",
+                      function: () {
+                        context.read<ProductsProvider>().sortByPrice(
+                          ascending: true,
+                        );
+                      },
+                      isSelected: productsProvider.sortOption == 1,
+                    ),
+                    SortButton(
+                      size: width,
                       ascending: true,
-                    );
-                  },
-                ),
-              ],
+                      label: "Size: Small to Large",
+                      function: () {
+                        context.read<ProductsProvider>().sortByActifAreaX(
+                          ascending: true,
+                        );
+                      },
+                      isSelected: productsProvider.sortOption == 5,
+                    ),
+                    SortButton(
+                      size: width,
+                      ascending: false,
+                      label: "Size: Large to Small",
+                      function: () {
+                        context.read<ProductsProvider>().sortByActifAreaX(
+                          ascending: false,
+                        );
+                      },
+                      isSelected: productsProvider.sortOption == 6,
+                    ),
+                    SortButton(
+                      size: width,
+                      ascending: false,
+                      label: "Name: A to Z",
+                      function: () {
+                        context.read<ProductsProvider>().sortByName(
+                          ascending: false,
+                        );
+                      },
+                      isSelected: productsProvider.sortOption == 4,
+                    ),
+                    SortButton(
+                      size: width,
+                      ascending: true,
+                      label: "Name: Z to A",
+                      function: () {
+                        context.read<ProductsProvider>().sortByName(
+                          ascending: true,
+                        );
+                      },
+                      isSelected: productsProvider.sortOption == 3,
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ],
@@ -139,6 +151,7 @@ class _SortSheetState extends State<SortSheet> {
 }
 
 class SortButton extends StatelessWidget {
+  final bool isSelected;
   final double size;
   final bool ascending;
   final String label;
@@ -150,6 +163,7 @@ class SortButton extends StatelessWidget {
     required this.ascending,
     required this.label,
     this.function,
+    this.isSelected = false,
   });
 
   @override
@@ -162,6 +176,12 @@ class SortButton extends StatelessWidget {
           },
       child: Row(
         children: [
+          Icon(
+            isSelected ? Icons.circle_rounded : Icons.circle_outlined,
+            size: size * 0.05,
+            color: textPrimary,
+          ),
+          SizedBox(width: size * 0.02),
           AbelText(text: label, fontSize: size * 0.05),
           SizedBox(width: size * 0.02),
           Icon(

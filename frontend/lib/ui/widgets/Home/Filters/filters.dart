@@ -3,7 +3,7 @@ import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filterSortButton.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filtersheet.dart';
-import 'package:grtabstore/ui/widgets/Home/Sort/sortSheet.dart';
+import 'package:grtabstore/ui/widgets/Home/Filters/sortSheet.dart';
 import 'package:grtabstore/ui/widgets/Home/searchBar.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
