@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/providers/cartProvider.dart';
+import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
@@ -9,11 +10,15 @@ class ProductHorizontalDisplay extends StatelessWidget {
   final Product product;
   final double height;
   final int count;
+  final bool order;
+  final bool canDelete;
   const ProductHorizontalDisplay({
     super.key,
     required this.product,
     required this.height,
     this.count = 1,
+    this.order = false,
+    this.canDelete = true,
   });
 
   @override
@@ -76,10 +81,17 @@ class ProductHorizontalDisplay extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  Provider.of<CartProvider>(
-                    context,
-                    listen: false,
-                  ).addProduct(product);
+                  if (order) {
+                    Provider.of<OrderProvider>(
+                      context,
+                      listen: false,
+                    ).addProduct(product);
+                  } else {
+                    Provider.of<CartProvider>(
+                      context,
+                      listen: false,
+                    ).addProduct(product);
+                  }
                 },
                 icon: Icon(
                   Icons.add,
@@ -95,10 +107,17 @@ class ProductHorizontalDisplay extends StatelessWidget {
               if (count > 1)
                 IconButton(
                   onPressed: () {
-                    Provider.of<CartProvider>(
-                      context,
-                      listen: false,
-                    ).decrementCountProduct(product);
+                    if (order) {
+                      Provider.of<OrderProvider>(
+                        context,
+                        listen: false,
+                      ).decrementCountProduct(product);
+                    } else {
+                      Provider.of<CartProvider>(
+                        context,
+                        listen: false,
+                      ).decrementCountProduct(product);
+                    }
                   },
                   icon: Icon(
                     Icons.remove,
@@ -108,15 +127,24 @@ class ProductHorizontalDisplay extends StatelessWidget {
                 ),
               SizedBox(width: width * 0.02),
               IconButton(
-                onPressed: () {
-                  Provider.of<CartProvider>(
-                    context,
-                    listen: false,
-                  ).removeProduct(product);
-                },
+                onPressed: !canDelete
+                    ? null
+                    : () {
+                        if (order) {
+                          Provider.of<OrderProvider>(
+                            context,
+                            listen: false,
+                          ).removeProduct(product);
+                        } else {
+                          Provider.of<CartProvider>(
+                            context,
+                            listen: false,
+                          ).removeProduct(product);
+                        }
+                      },
                 icon: Icon(
                   Icons.delete,
-                  color: accentError,
+                  color: canDelete ? accentError : textTertiary,
                   size: width * 0.048,
                 ),
               ),

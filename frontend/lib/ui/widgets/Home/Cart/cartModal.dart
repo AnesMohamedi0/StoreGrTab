@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/providers/cartProvider.dart';
+import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
-import 'package:grtabstore/ui/screens/Home/mobilePlaceOrder.dart';
+import 'package:grtabstore/ui/screens/PlaceOrder/mobilePlaceOrder.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Product/ProductHorizontalDisplay.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filterSortButton.dart';
@@ -112,11 +113,14 @@ class CartModal extends StatelessWidget {
                         size: width * 0.05,
                       ),
                       function: () {
+                        Provider.of<OrderProvider>(
+                          context,
+                          listen: false,
+                        ).setProducts = provider.products;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                MobilePlaceOrder(products: provider.products),
+                            builder: (context) => MobilePlaceOrder(),
                           ),
                         );
                       },

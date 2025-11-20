@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 
 class AnimatedFlexibleSpace extends StatefulWidget {
-  const AnimatedFlexibleSpace({Key? key}) : super(key: key);
+  final bool placeOrder;
+  const AnimatedFlexibleSpace({Key? key, this.placeOrder = false})
+    : super(key: key);
 
   @override
   State<AnimatedFlexibleSpace> createState() => _AnimatedFlexibleSpaceState();
@@ -37,6 +39,24 @@ class _AnimatedFlexibleSpaceState extends State<AnimatedFlexibleSpace>
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
+        List<Color> colors;
+        List<double> stops;
+
+        if (widget.placeOrder) {
+          colors = [
+            Color.lerp(electricBlueDark, electricBlueDarker, _animation.value)!,
+            Color.lerp(electricBlueDarkest, deepPurpleDark, _animation.value)!,
+          ];
+          stops = [0.0, 1.0];
+        } else {
+          colors = [
+            Color.lerp(electricBlueDark, electricBlueDarker, _animation.value)!,
+            Color.lerp(electricBlueDarkest, deepPurpleDark, _animation.value)!,
+            Color.lerp(deepPurpleDarkest, deepPurpleDarker, _animation.value)!,
+          ];
+          stops = [0.0, 0.5, 1.0];
+        }
+
         return Container(
           decoration: BoxDecoration(
             gradient: RadialGradient(
@@ -46,24 +66,8 @@ class _AnimatedFlexibleSpaceState extends State<AnimatedFlexibleSpace>
                 _animation.value,
               )!,
               radius: 1.5 + (_animation.value * 0.5),
-              colors: [
-                Color.lerp(
-                  electricBlueDark,
-                  electricBlueDarker,
-                  _animation.value,
-                )!,
-                Color.lerp(
-                  electricBlueDarkest,
-                  deepPurpleDark,
-                  _animation.value,
-                )!,
-                Color.lerp(
-                  deepPurpleDarkest,
-                  deepPurpleDarker,
-                  _animation.value,
-                )!,
-              ],
-              stops: [0.0, 0.5, 1.0],
+              colors: colors,
+              stops: stops,
             ),
           ),
         );

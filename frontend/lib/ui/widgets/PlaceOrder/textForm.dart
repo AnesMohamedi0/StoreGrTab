@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 
 class TextForm extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final Icon icon;
+  final bool onlyNumbers;
 
   const TextForm({
     super.key,
     required this.controller,
     required this.label,
     required this.icon,
+    this.onlyNumbers = false,
   });
 
   @override
@@ -32,12 +35,16 @@ class TextForm extends StatelessWidget {
       height: height * 0.045,
       child: TextField(
         controller: controller,
+        keyboardType: onlyNumbers ? TextInputType.number : TextInputType.text,
+        inputFormatters: onlyNumbers
+            ? [FilteringTextInputFormatter.digitsOnly]
+            : null,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: label,
           isDense: true,
           contentPadding: EdgeInsets.zero,
-          icon: Icon(Icons.search, color: textPrimary, size: width * 0.06),
+          icon: icon,
         ),
       ),
     );
