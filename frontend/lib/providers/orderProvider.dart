@@ -7,10 +7,15 @@ import 'package:provider/provider.dart';
 
 class OrderProvider extends ChangeNotifier {
   List<(Product, int)> products = [];
-  late String name;
-  late String lastName;
-  late String phoneNumber;
-  late Province province;
+  String name = '';
+  String lastName = '';
+  String phoneNumber = '';
+  Province province = Province(
+    id: 0,
+    name: '',
+    homeDeliveryFee: 0,
+    deskDeliveryFee: 0,
+  );
 
   late Commune commune;
 
@@ -27,6 +32,10 @@ class OrderProvider extends ChangeNotifier {
     deliveryType = 0; // Default to Desk pickup
   }
 
+  bool canOrder() {
+    return name.isNotEmpty && lastName.isNotEmpty && phoneNumber.isNotEmpty;
+  }
+
   bool canDeleteProduct() {
     return products.length > 1;
   }
@@ -40,6 +49,28 @@ class OrderProvider extends ChangeNotifier {
     products.clear();
     products = List.of(newProducts);
     notifyListeners();
+  }
+
+  double getTotalItemCost() {
+    double total = 0.0;
+    for (var item in products) {
+      total += item.$1.price * item.$2;
+    }
+    return total;
+  }
+
+  double getDeliveryCost() {
+    if (deliveryType == 1) {
+      return province.homeDeliveryFee;
+    } else if (deliveryType == 0) {
+      return province.deskDeliveryFee;
+    } else {
+      return 0.0;
+    }
+  }
+
+  double getTotalOrderCost() {
+    return getTotalItemCost() + getDeliveryCost();
   }
 
   void removeProduct(Product product) {
@@ -103,64 +134,354 @@ class OrderProvider extends ChangeNotifier {
 
   void getAllProvinces() {
     provinces = [
-      Province(id: 1, name: "Adrar"),
-      Province(id: 2, name: "Chlef"),
-      Province(id: 3, name: "Laghouat"),
-      Province(id: 4, name: "Oum El Bouaghi"),
-      Province(id: 5, name: "Batna"),
-      Province(id: 6, name: "Béjaïa"),
-      Province(id: 7, name: "Biskra"),
-      Province(id: 8, name: "Béchar"),
-      Province(id: 9, name: "Blida"),
-      Province(id: 10, name: "Bouira"),
-      Province(id: 11, name: "Tamanrasset"),
-      Province(id: 12, name: "Tébessa"),
-      Province(id: 13, name: "Tlemcen"),
-      Province(id: 14, name: "Tiaret"),
-      Province(id: 15, name: "Tizi Ouzou"),
-      Province(id: 16, name: "Alger"),
-      Province(id: 17, name: "Djelfa"),
-      Province(id: 18, name: "Jijel"),
-      Province(id: 19, name: "Sétif"),
-      Province(id: 20, name: "Saïda"),
-      Province(id: 21, name: "Skikda"),
-      Province(id: 22, name: "Sidi Bel Abbès"),
-      Province(id: 23, name: "Annaba"),
-      Province(id: 24, name: "Guelma"),
-      Province(id: 25, name: "Constantine"),
-      Province(id: 26, name: "Médéa"),
-      Province(id: 27, name: "Mostaganem"),
-      Province(id: 28, name: "M'Sila"),
-      Province(id: 29, name: "Mascara"),
-      Province(id: 30, name: "Ouargla"),
-      Province(id: 31, name: "Oran"),
-      Province(id: 32, name: "El Bayadh"),
-      Province(id: 33, name: "Illizi"),
-      Province(id: 34, name: "Bordj Bou Arréridj"),
-      Province(id: 35, name: "Boumerdès"),
-      Province(id: 36, name: "El Tarf"),
-      Province(id: 37, name: "Tindouf"),
-      Province(id: 38, name: "Tissemsilt"),
-      Province(id: 39, name: "El Oued"),
-      Province(id: 40, name: "Khenchela"),
-      Province(id: 41, name: "Souk Ahras"),
-      Province(id: 42, name: "Tipaza"),
-      Province(id: 43, name: "Mila"),
-      Province(id: 44, name: "Aïn Defla"),
-      Province(id: 45, name: "Naâma"),
-      Province(id: 46, name: "Aïn Témouchent"),
-      Province(id: 47, name: "Ghardaïa"),
-      Province(id: 48, name: "Relizane"),
-      Province(id: 49, name: "Timimoun"),
-      Province(id: 50, name: "Bordj Badji Mokhtar"),
-      Province(id: 51, name: "Ouled Djellal"),
-      Province(id: 52, name: "Béni Abbès"),
-      Province(id: 53, name: "In Salah"),
-      Province(id: 54, name: "In Guezzam"),
-      Province(id: 55, name: "Touggourt"),
-      Province(id: 56, name: "Djanet"),
-      Province(id: 57, name: "El M'Ghair"),
-      Province(id: 58, name: "El Meniaa"),
+      Province(
+        id: 1,
+        name: "Adrar",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 2,
+        name: "Chlef",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 3,
+        name: "Laghouat",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 4,
+        name: "Oum El Bouaghi",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 5,
+        name: "Batna",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 6,
+        name: "Béjaïa",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 7,
+        name: "Biskra",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 8,
+        name: "Béchar",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 9,
+        name: "Blida",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 10,
+        name: "Bouira",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 11,
+        name: "Tamanrasset",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 12,
+        name: "Tébessa",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 13,
+        name: "Tlemcen",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 14,
+        name: "Tiaret",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 15,
+        name: "Tizi Ouzou",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 16,
+        name: "Alger",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 17,
+        name: "Djelfa",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 18,
+        name: "Jijel",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 19,
+        name: "Sétif",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 20,
+        name: "Saïda",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 21,
+        name: "Skikda",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 22,
+        name: "Sidi Bel Abbès",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 23,
+        name: "Annaba",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 24,
+        name: "Guelma",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 25,
+        name: "Constantine",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 26,
+        name: "Médéa",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 27,
+        name: "Mostaganem",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 28,
+        name: "M'Sila",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 29,
+        name: "Mascara",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 30,
+        name: "Ouargla",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 31,
+        name: "Oran",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 32,
+        name: "El Bayadh",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 33,
+        name: "Illizi",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 34,
+        name: "Bordj Bou Arréridj",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 35,
+        name: "Boumerdès",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 36,
+        name: "El Tarf",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 37,
+        name: "Tindouf",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 38,
+        name: "Tissemsilt",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 39,
+        name: "El Oued",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 40,
+        name: "Khenchela",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 41,
+        name: "Souk Ahras",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 42,
+        name: "Tipaza",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 43,
+        name: "Mila",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 44,
+        name: "Aïn Defla",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 45,
+        name: "Naâma",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 46,
+        name: "Aïn Témouchent",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 47,
+        name: "Ghardaïa",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 48,
+        name: "Relizane",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 49,
+        name: "Timimoun",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 50,
+        name: "Bordj Badji Mokhtar",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 51,
+        name: "Ouled Djellal",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 52,
+        name: "Béni Abbès",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 53,
+        name: "In Salah",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 54,
+        name: "In Guezzam",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 55,
+        name: "Touggourt",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 56,
+        name: "Djanet",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 57,
+        name: "El M'Ghair",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
+      Province(
+        id: 58,
+        name: "El Meniaa",
+        homeDeliveryFee: 0.0,
+        deskDeliveryFee: 0.0,
+      ),
     ];
     notifyListeners();
   }

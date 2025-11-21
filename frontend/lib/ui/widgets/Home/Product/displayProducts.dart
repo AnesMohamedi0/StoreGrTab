@@ -87,8 +87,8 @@ class ProductDisplay extends StatelessWidget {
                 AbelText(
                   text: '${product.price.toStringAsFixed(0)} DA',
                   fontSize: width * 0.0935,
-                  color: textPrice,
-                  fontWeight: FontWeight.w600,
+                  color: textPrimary,
+                  fontWeight: FontWeight.bold,
                 ),
               ],
             ),
@@ -101,12 +101,12 @@ class ProductDisplay extends StatelessWidget {
                 ? !product.isAlmostSoldOut
                       ? Container()
                       : NewAlmostSoldOut(
-                          color: accentWarning,
+                          color: electricBlueDark,
                           width: width * 0.07,
                           text: ' Almost Sold Out ... ',
                         )
                 : NewAlmostSoldOut(
-                    color: accentSuccess,
+                    color: deepPurpleDark,
                     width: width * 0.07,
                     text: " NEW ! ",
                   ),

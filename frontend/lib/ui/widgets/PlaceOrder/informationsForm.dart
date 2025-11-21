@@ -5,6 +5,7 @@ import 'package:grtabstore/ui/widgets/PlaceOrder/communeSelector.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/deliveryType.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/provienceSelector.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/textForm.dart';
+import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
 class InformationsForm extends StatelessWidget {
@@ -15,6 +16,25 @@ class InformationsForm extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Column(
       children: [
+        Row(
+          children: [
+            Icon(Icons.person, color: textSecondary, size: width * 0.06),
+            SizedBox(width: width * 0.01),
+            AbelText(
+              text: 'Personal Information:',
+              fontSize: width * 0.038,
+              color: textSecondary,
+            ),
+            IconButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                // Handle icon button press
+              },
+              icon: Icon(Icons.info, color: textTertiary, size: width * 0.04),
+            ),
+          ],
+        ),
+        SizedBox(height: width * 0.02),
         Row(
           children: [
             Expanded(

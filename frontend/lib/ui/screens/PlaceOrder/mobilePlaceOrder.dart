@@ -5,6 +5,8 @@ import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filterSortButton.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/informationsForm.dart';
 import 'package:grtabstore/ui/widgets/Home/Product/ProductHorizontalDisplay.dart';
+import 'package:grtabstore/ui/widgets/PlaceOrder/placeOrderButton.dart';
+import 'package:grtabstore/ui/widgets/PlaceOrder/priceDisplay.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/productsToOrder.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
@@ -65,8 +67,8 @@ class MobilePlaceOrder extends StatelessWidget {
       ),
       body: Container(
         padding: EdgeInsets.all(width * 0.03),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        height: double.infinity,
+        child: ListView(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -86,9 +88,19 @@ class MobilePlaceOrder extends StatelessWidget {
 
             ProductsToOrder(),
 
-            SizedBox(height: height * 0.035),
+            SizedBox(height: height * 0.02),
 
             InformationsForm(),
+
+            SizedBox(height: height * 0.02),
+
+            TotalPriceDisplay(),
+
+            SizedBox(height: height * 0.02),
+
+            PlaceOrderButton(),
+
+            SizedBox(height: height * 0.04),
           ],
         ),
       ),
