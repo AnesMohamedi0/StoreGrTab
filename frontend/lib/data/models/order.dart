@@ -1,28 +1,24 @@
 import 'commune.dart';
 import 'product.dart';
 
-class OrderModel {
+class Order {
   final int orderId;
   final String name;
-  final String familyName;
-  final String address;
+  final String lastName;
   final String phone;
   final double totalPrice;
   final DateTime orderDate;
-  final int orderStatus;
   final int communeId;
   final int deliveryType; //0 desk 1 domicile 2 public pickup
   final List<(Product, int)> products; // List of products with their quantities
 
-  const OrderModel({
+  const Order({
     required this.orderId,
     required this.name,
-    required this.familyName,
-    required this.address,
+    required this.lastName,
     required this.phone,
     required this.totalPrice,
     required this.orderDate,
-    required this.orderStatus,
     required this.communeId,
     required this.deliveryType,
     this.products = const [],
@@ -34,17 +30,15 @@ class OrderModel {
     return double.tryParse(v.toString()) ?? 0.0;
   }
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
+  factory Order.fromJson(Map<String, dynamic> json) => Order(
     orderId: (json['orderId'] as num?)?.toInt() ?? 0,
     name: (json['name'] as String?) ?? '',
-    familyName: (json['familyName'] as String?) ?? '',
-    address: (json['address'] as String?) ?? '',
+    lastName: (json['lastName'] as String?) ?? '',
     phone: (json['phone'] as String?) ?? '',
     totalPrice: _toDouble(json['totalPrice']),
     orderDate:
         DateTime.tryParse(json['orderDate']?.toString() ?? '') ??
         DateTime.fromMillisecondsSinceEpoch(0, isUtc: true),
-    orderStatus: (json['orderStatus'] as num?)?.toInt() ?? 0,
     communeId: (json['communeId'] as num?)?.toInt() ?? 0,
     products:
         (json['products'] as List?)
@@ -62,12 +56,10 @@ class OrderModel {
   Map<String, dynamic> toJson() => {
     'orderId': orderId,
     'name': name,
-    'familyName': familyName,
-    'address': address,
+    'lastName': lastName,
     'phone': phone,
     'totalPrice': totalPrice,
     'orderDate': orderDate.toIso8601String(),
-    'orderStatus': orderStatus,
     'communeId': communeId,
     'products': products
         .map((e) => {'product': e.$1.toJson(), 'quantity': e.$2})

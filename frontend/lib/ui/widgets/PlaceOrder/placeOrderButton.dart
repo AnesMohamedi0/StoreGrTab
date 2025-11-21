@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/data/models/order.dart';
 import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
@@ -17,7 +18,21 @@ class PlaceOrderButton extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: TextButton(
             style: TextButton.styleFrom(padding: EdgeInsets.zero),
-            onPressed: () {},
+            onPressed: () {
+              Order order = Order(
+                orderId: 0,
+                products: orderProvider.products,
+                name: orderProvider.name,
+                lastName: orderProvider.lastName,
+                phone: orderProvider.phoneNumber,
+                communeId: orderProvider.commune.id,
+                deliveryType: orderProvider.deliveryType,
+                totalPrice: orderProvider.getTotalOrderCost(),
+                orderDate: DateTime.now()
+              );
+
+              
+            },
             child: Container(
               padding: EdgeInsets.symmetric(
                 horizontal: width * 0.02,
