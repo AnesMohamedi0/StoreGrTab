@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
+import 'package:grtabstore/ui/widgets/PlaceOrder/communeSelector.dart';
+import 'package:grtabstore/ui/widgets/PlaceOrder/deliveryType.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/provienceSelector.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/textForm.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +26,12 @@ class InformationsForm extends StatelessWidget {
                   color: textSecondary,
                   size: width * 0.05,
                 ),
+                onChange: (value) {
+                  Provider.of<OrderProvider>(
+                    context,
+                    listen: false,
+                  ).setName(value);
+                },
               ),
             ),
             Expanded(
@@ -34,6 +43,12 @@ class InformationsForm extends StatelessWidget {
                   color: textSecondary,
                   size: width * 0.05,
                 ),
+                onChange: (value) {
+                  Provider.of<OrderProvider>(
+                    context,
+                    listen: false,
+                  ).setLastName(value);
+                },
               ),
             ),
           ],
@@ -51,13 +66,27 @@ class InformationsForm extends StatelessWidget {
                   size: width * 0.05,
                 ),
                 onlyNumbers: true,
+                onChange: (value) {
+                  Provider.of<OrderProvider>(
+                    context,
+                    listen: false,
+                  ).setPhoneNumber(value);
+                },
               ),
             ),
           ],
         ),
         SizedBox(height: width * 0.02),
 
-        Row(children: [Expanded(child: ProvinceSelector())]),
+        Row(
+          children: [
+            Expanded(child: ProvinceSelector()),
+            Expanded(child: CommuneSelector()),
+          ],
+        ),
+        SizedBox(height: width * 0.02),
+
+        DeliveryTypeSelector(),
       ],
     );
   }

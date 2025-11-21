@@ -11,7 +11,10 @@ class OrderProvider extends ChangeNotifier {
   late String lastName;
   late String phoneNumber;
   late Province province;
+
   late Commune commune;
+
+  late int deliveryType; // 2: Pickup, 1: Home Delivery, 0: Desk pickup
 
   List<Province> provinces = [];
   List<Commune> communes = [];
@@ -19,10 +22,18 @@ class OrderProvider extends ChangeNotifier {
   OrderProvider() {
     getAllProvinces();
     province = provinces[15];
+    getAllCommunesForProvince(province);
+    commune = communes[0];
+    deliveryType = 0; // Default to Desk pickup
   }
 
   bool canDeleteProduct() {
     return products.length > 1;
+  }
+
+  void setDeliveryType(int type) {
+    deliveryType = type;
+    notifyListeners();
   }
 
   set setProducts(List<(Product, int)> newProducts) {
@@ -81,6 +92,7 @@ class OrderProvider extends ChangeNotifier {
 
   void setProvince(Province newProvince) {
     province = newProvince;
+    deliveryType = 0;
     notifyListeners();
   }
 
@@ -241,6 +253,8 @@ class OrderProvider extends ChangeNotifier {
         ];
         break;
     }
+
+    commune = communes[0];
 
     notifyListeners();
   }

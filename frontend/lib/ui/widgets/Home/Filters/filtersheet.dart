@@ -26,7 +26,7 @@ class _FilterSheetState extends State<FilterSheet> {
 
     return Container(
       width: width,
-      height: height * 0.5,
+      height: height * 0.45,
       padding: EdgeInsets.symmetric(
         horizontal: width * 0.06,
         vertical: height * 0.03,
@@ -34,7 +34,7 @@ class _FilterSheetState extends State<FilterSheet> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         gradient: LinearGradient(
-          colors: [Colors.white, deepPurpleLightest],
+          colors: [Colors.white, cardBackgroundSecondary],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),

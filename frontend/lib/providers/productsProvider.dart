@@ -297,7 +297,7 @@ class ProductsProvider extends ChangeNotifier {
 
   void clearSortOptions() {
     sortOption = 1;
-    sortByPrice(ascending: true);
+    sortByPrice(ascending: false);
     notifyListeners();
   }
 

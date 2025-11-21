@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,11 @@ class SearchBarFilter extends StatelessWidget {
       ),
       height: height * 0.045,
       child: TextField(
+        style: GoogleFonts.abel(
+          fontSize: width * 0.034,
+          color: textSecondary,
+          fontWeight: FontWeight.w600,
+        ),
         controller: searchController,
         onChanged: (value) {
           Provider.of<ProductsProvider>(
@@ -38,7 +44,7 @@ class SearchBarFilter extends StatelessWidget {
           hintText: 'Search...',
           isDense: true,
           contentPadding: EdgeInsets.zero,
-          icon: Icon(Icons.search, color: textPrimary, size: width * 0.06),
+          icon: Icon(Icons.search, color: textSecondary, size: width * 0.06),
         ),
       ),
     );

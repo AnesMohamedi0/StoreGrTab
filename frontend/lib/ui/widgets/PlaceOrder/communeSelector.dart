@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grtabstore/data/models/province.dart';
+import 'package:grtabstore/data/models/commune.dart';
 import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:provider/provider.dart';
 
-class ProvinceSelector extends StatelessWidget {
-  const ProvinceSelector({super.key});
+class CommuneSelector extends StatelessWidget {
+  const CommuneSelector({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +30,52 @@ class ProvinceSelector extends StatelessWidget {
           height: height * 0.045,
           child: Row(
             children: [
-              Icon(Icons.location_on, color: textSecondary, size: width * 0.05),
-              SizedBox(width: width * 0.026),
+              Icon(
+                Icons.location_city,
+                color: textSecondary,
+                size: width * 0.05,
+              ),
+              SizedBox(width: width * 0.02),
               Expanded(
                 child: DropdownButtonHideUnderline(
-                  child: DropdownButton<Province>(
-                    value: orderProvider.province,
+                  child: DropdownButton<Commune>(
+                    // Current selected value
+                    value:
+                        orderProvider.communes.contains(orderProvider.commune)
+                        ? orderProvider.commune
+                        : null,
+
+                    // Hint text when nothing is selected
+                    hint: Text(
+                      "Select Commune",
+                      style: TextStyle(
+                        color: textSecondary,
+                        fontSize: width * 0.035,
+                      ),
+                    ),
+
+                    // Make dropdown take full width
                     isExpanded: true,
+
+                    // Icon for dropdown
                     icon: Icon(
                       Icons.keyboard_arrow_down,
                       color: textSecondary,
                       size: width * 0.05,
                     ),
+
                     style: GoogleFonts.abel(
                       fontSize: width * 0.03,
                       color: textPrimary,
                       fontWeight: FontWeight.w600,
                     ),
-                    items: orderProvider.provinces.map((Province province) {
-                      return DropdownMenuItem<Province>(
-                        value: province,
+
+                    // Dropdown items
+                    items: orderProvider.communes.map((Commune commune) {
+                      return DropdownMenuItem<Commune>(
+                        value: commune,
                         child: Text(
-                          province.name,
+                          commune.name,
                           style: GoogleFonts.abel(
                             fontSize: width * 0.038,
                             color: textPrimary,
@@ -60,12 +84,11 @@ class ProvinceSelector extends StatelessWidget {
                         ),
                       );
                     }).toList(),
-                    onChanged: (Province? selectedProvince) {
-                      if (selectedProvince != null) {
-                        orderProvider.setProvince(selectedProvince);
-                        orderProvider.getAllCommunesForProvince(
-                          selectedProvince,
-                        );
+
+                    // When user selects an item
+                    onChanged: (Commune? selectedCommune) {
+                      if (selectedCommune != null) {
+                        orderProvider.setCommune(selectedCommune);
                       }
                     },
                   ),
