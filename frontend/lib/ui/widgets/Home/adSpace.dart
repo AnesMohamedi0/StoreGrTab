@@ -31,17 +31,32 @@ class _AdspaceState extends State<Adspace> {
     try {
       final data = await apiService.get('Ads');
       if (data is List && data.isNotEmpty) {
-        setState(() {
-          _ads = data
-              .map((item) => Ad.fromJson(item as Map<String, dynamic>))
-              .toList();
-          _isLoading = false;
-        });
-        _startAutoAdvance();
+        if (mounted) {
+          // Add this check
+          setState(() {
+            _ads = data
+                .map((item) => Ad.fromJson(item as Map<String, dynamic>))
+                .toList();
+            _isLoading = false;
+          });
+          _startAutoAdvance();
+        }
+      } else {
+        if (mounted) {
+          // Add this check
+          setState(() {
+            _isLoading = false;
+          });
+        }
       }
-      _startAutoAdvance();
     } catch (e) {
       print('Error fetching ads: $e');
+      if (mounted) {
+        // Add this check
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -50,6 +65,7 @@ class _AdspaceState extends State<Adspace> {
     if (_ads.length > 1 && mounted) {
       _autoAdvanceTimer = Timer(const Duration(seconds: 10), () {
         if (mounted) {
+          // This check is crucial
           _nextAd();
         }
       });
@@ -57,7 +73,7 @@ class _AdspaceState extends State<Adspace> {
   }
 
   void _nextAd() {
-    if (!mounted || _ads.isEmpty) return;
+    if (!mounted || _ads.isEmpty) return; // Add mounted check
 
     setState(() {
       _currentIndex = (_currentIndex + 1) % _ads.length;
@@ -67,7 +83,7 @@ class _AdspaceState extends State<Adspace> {
 
   @override
   void dispose() {
-    _autoAdvanceTimer?.cancel();
+    _autoAdvanceTimer?.cancel(); // Cancel timer before disposing
     super.dispose();
   }
 

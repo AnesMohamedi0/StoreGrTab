@@ -19,7 +19,6 @@ namespace GraphicsTabletStore.API.Controllers
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             return await _context.Orders
-                .Include(o => o.Products)
                 .ToListAsync();
         }
 
@@ -34,15 +33,42 @@ namespace GraphicsTabletStore.API.Controllers
 
             return order;
         }
+[HttpPost]
+public async Task<IActionResult> PostOrder(Order order)
+{
+    try
+    {
+        Console.WriteLine($"Received order: Name={order.Name}, Products={order.Products}");
+        
+        // Don't set OrderId - let EF handle it
+        order.OrderId = 0; // Ensure it's 0 so EF will auto-generate
+        
+        _context.Orders.Add(order);
+        await _context.SaveChangesAsync();
 
-        [HttpPost]
-        public async Task<IActionResult> PostOrder(Order order)
-        {
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
+        Console.WriteLine($"Order saved successfully with ID: {order.OrderId}");
 
-            return NoContent();
-        }
+        var response = new { 
+            message = "Order created successfully", 
+            orderId = order.OrderId 
+        };
+
+        Console.WriteLine($"Returning response: {System.Text.Json.JsonSerializer.Serialize(response)}");
+        
+        return Ok(response);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error creating order: {ex.Message}");
+        Console.WriteLine($"Inner exception: {ex.InnerException?.Message}");
+        Console.WriteLine($"Stack trace: {ex.StackTrace}");
+        
+        return BadRequest(new { 
+            error = ex.Message,
+            details = ex.InnerException?.Message 
+        });
+    }
+}
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(int id, Order order)

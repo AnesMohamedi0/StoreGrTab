@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/order.dart';
 import 'package:grtabstore/providers/orderProvider.dart';
+import 'package:grtabstore/services/apiService.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
@@ -18,10 +19,14 @@ class PlaceOrderButton extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: TextButton(
             style: TextButton.styleFrom(padding: EdgeInsets.zero),
-            onPressed: () {
+            onPressed: () async {
+              List<(int, int)> products = orderProvider.products
+                  .map((e) => (e.$1.productId, e.$2))
+                  .toList();
+
               Order order = Order(
                 orderId: 0,
-                products: orderProvider.products,
+                products: products,
                 name: orderProvider.name,
                 lastName: orderProvider.lastName,
                 phone: orderProvider.phoneNumber,
@@ -30,6 +35,21 @@ class PlaceOrderButton extends StatelessWidget {
                 totalPrice: orderProvider.getTotalOrderCost(),
                 orderDate: DateTime.now(),
               );
+
+              await apiService.post('Order', order.toJson());
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: AbelText(
+                    text: 'Order placed successfully!',
+                    fontSize: width * 0.04,
+                    color: textOnDark,
+                  ),
+                  backgroundColor: accentSuccess,
+                ),
+              );
+
+              Navigator.pop(context);
             },
             child: Container(
               padding: EdgeInsets.symmetric(

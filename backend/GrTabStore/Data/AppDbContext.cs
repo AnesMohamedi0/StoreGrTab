@@ -13,13 +13,18 @@ namespace GraphicsTabletStore.API.Models
         public DbSet<Commune> Communes { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Ad> Ads { get; set; } 
+public DbSet<Ad> Ads { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Order>()
-                .HasMany(o => o.Products)
-                .WithMany();
+                .Property(e => e.OrderId)
+                .ValueGeneratedOnAdd(); // Auto-generate on add
+            
+            // ... other configurations
         }
+
     }
 }
