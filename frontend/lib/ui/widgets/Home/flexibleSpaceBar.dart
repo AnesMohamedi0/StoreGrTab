@@ -83,21 +83,11 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
                         padding: EdgeInsets.only(
                           bottom: height * 0.02 * collapseRatio,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SocialMediaButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.facebook, color: Colors.white),
-                              label: "Follow Us",
-                            ),
-
-                            SocialMediaButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.email, color: Colors.white),
-                              label: "Contact Us",
-                            ),
-                          ],
+                        child: TitlesText(
+                          text:
+                              'Discover the Best Graphics Tablets at Unbeatable Prices!',
+                          fontSize: width * 0.035,
+                          color: textOnBlue,
                         ),
                       ),
                     ),
@@ -110,50 +100,47 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
               return Positioned(
                 top: height * 0.01,
                 right: 0,
-                child: Opacity(
-                  opacity: collapseRatioInversed.clamp(0.0, 1.0),
-                  child: TextButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.white,
-                        builder: (context) {
-                          return FractionallySizedBox(child: const CartModal());
-                        },
-                      );
-                    },
-                    child: SizedBox(
-                      width: width * 0.1,
-                      height: height * 0.06,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Icon(
-                            Icons.shopping_cart_rounded,
-                            color: Colors.white,
-                            size: width * 0.08,
-                          ),
-                          Positioned(
-                            top: -width * 0.02,
-                            left: width * 0.04,
-                            right: width * 0.01,
-                            child: Container(
-                              width: provider.getTotalItems() <= 9
-                                  ? width * 0.04
-                                  : width * 0.06,
-                              height: width * 0.065,
-                              color: deepPurpleDark,
-                              alignment: Alignment.bottomCenter,
-                              child: AbelText(
-                                text: provider.getTotalItems().toString(),
-                                color: textOnBlue,
-                                fontSize: width * 0.04,
-                              ),
+                child: TextButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.white,
+                      builder: (context) {
+                        return FractionallySizedBox(child: const CartModal());
+                      },
+                    );
+                  },
+                  child: SizedBox(
+                    width: width * 0.1,
+                    height: height * 0.06,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Icon(
+                          Icons.shopping_cart_rounded,
+                          color: Colors.white,
+                          size: width * 0.08,
+                        ),
+                        Positioned(
+                          top: -width * 0.02,
+                          left: width * 0.04,
+                          right: width * 0.01,
+                          child: Container(
+                            width: provider.getTotalItems() <= 9
+                                ? width * 0.04
+                                : width * 0.06,
+                            height: width * 0.065,
+                            color: deepPurpleDark,
+                            alignment: Alignment.bottomCenter,
+                            child: AbelText(
+                              text: provider.getTotalItems().toString(),
+                              color: textOnBlue,
+                              fontSize: width * 0.04,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

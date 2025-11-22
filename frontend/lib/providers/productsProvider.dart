@@ -6,12 +6,9 @@ import 'dart:convert';
 class ProductsProvider extends ChangeNotifier {
   List<Product> _products = [];
   List<Product> _filteredProducts = [];
-  List<Product> _shoppingCart = [];
 
   List<Product> get products => _products;
   List<Product> get filteredProducts => _filteredProducts;
-  List<Product> get shoppingCart => _shoppingCart;
-
   int sortOption = 1;
 
   int statueFilter = 0;
@@ -191,27 +188,6 @@ class ProductsProvider extends ChangeNotifier {
     sortByPrice(ascending: false);
     notifyListeners();
   }
-
-  void addToShoppingCart(Product product) {
-    _shoppingCart.add(product);
-    notifyListeners();
-  }
-
-  void removeFromShoppingCart(Product product) {
-    _shoppingCart.remove(product);
-    notifyListeners();
-  }
-
-  void clearShoppingCart() {
-    _shoppingCart.clear();
-    notifyListeners();
-  }
-
-  bool isInShoppingCart(Product product) {
-    return _shoppingCart.contains(product);
-  }
-
-  int get shoppingCartItemCount => _shoppingCart.length;
 
   int getNumberFilters() {
     int count = 0;

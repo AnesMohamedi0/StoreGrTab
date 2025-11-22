@@ -10,6 +10,7 @@ import 'package:grtabstore/ui/widgets/PlaceOrder/priceDisplay.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/productsToOrder.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
+import 'package:grtabstore/ui/widgets/Shared/footer.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -65,42 +66,50 @@ class MobilePlaceOrder extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        padding: EdgeInsets.all(width * 0.03),
+      body: SizedBox(
         height: double.infinity,
         child: ListView(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(width: width * 0.02),
-                AbelText(
-                  text:
-                      "Please enter your personal informations to place the Order",
-                  fontSize: width * 0.035,
-                  fontWeight: FontWeight.bold,
-                  color: textSecondary,
-                ),
-              ],
+            Container(
+              padding: EdgeInsets.all(width * 0.03),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: width * 0.02),
+                      AbelText(
+                        text:
+                            "Please enter your personal informations to place the Order",
+                        fontSize: width * 0.035,
+                        fontWeight: FontWeight.bold,
+                        color: textSecondary,
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: height * 0.02),
+
+                  ProductsToOrder(),
+
+                  SizedBox(height: height * 0.02),
+
+                  InformationsForm(),
+
+                  SizedBox(height: height * 0.02),
+
+                  TotalPriceDisplay(),
+
+                  SizedBox(height: height * 0.02),
+
+                  PlaceOrderButton(),
+
+                  SizedBox(height: height * 0.03),
+                ],
+              ),
             ),
 
-            SizedBox(height: height * 0.02),
-
-            ProductsToOrder(),
-
-            SizedBox(height: height * 0.02),
-
-            InformationsForm(),
-
-            SizedBox(height: height * 0.02),
-
-            TotalPriceDisplay(),
-
-            SizedBox(height: height * 0.02),
-
-            PlaceOrderButton(),
-
-            SizedBox(height: height * 0.04),
+            WebsiteFooter(),
           ],
         ),
       ),

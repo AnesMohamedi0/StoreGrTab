@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/ad.dart';
 import 'package:grtabstore/providers/adsProvider.dart';
+import 'package:grtabstore/ui/widgets/Shared/footer.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
 import 'package:provider/provider.dart';
@@ -114,6 +115,8 @@ class MobileHomeScreen extends StatelessWidget {
                       ),
                     ),
             ),
+            SliverToBoxAdapter(child: SizedBox(height: height * 0.05)),
+            SliverToBoxAdapter(child: WebsiteFooter()),
           ],
         ),
       ),

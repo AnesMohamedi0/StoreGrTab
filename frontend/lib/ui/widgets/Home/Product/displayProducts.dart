@@ -126,11 +126,9 @@ class ProductDisplay extends StatelessWidget {
                     width: width * 0.2,
                     height: width * 0.05,
                     color: Colors.grey.shade300,
-                    child: Center(
-                      child: Text(
-                        'Loading...',
-                        style: TextStyle(fontSize: width * 0.03),
-                      ),
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: deepPurpleDarkest,
                     ),
                   );
                 }
