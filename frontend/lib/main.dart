@@ -5,7 +5,6 @@ import 'package:grtabstore/providers/locationProvider.dart';
 import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
-import 'package:grtabstore/providers/adsProvider.dart';
 import 'app.dart';
 import 'dart:io';
 
@@ -15,7 +14,6 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ProductsProvider()),
-        ChangeNotifierProvider(create: (_) => AdsProvider()),
         ChangeNotifierProvider(create: (_) => BrandsProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => OrderProvider()),

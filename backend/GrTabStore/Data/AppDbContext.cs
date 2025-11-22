@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 
 namespace GraphicsTabletStore.API.Models
 {
@@ -12,6 +13,7 @@ namespace GraphicsTabletStore.API.Models
         public DbSet<Commune> Communes { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Ad> Ads { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

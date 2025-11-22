@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\devlopment\\web\\GrTabStore\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122195649_updated ads, added isDark.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GrTabStore\\Migrations\\20251122195649_updated ads, added isDark.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D990EC73-4DA5-467B-9333-DD1EAF028EA8}|GrTabStore\\GrTabStore.csproj|c:\\devlopment\\web\\grtabstore\\backend\\grtabstore\\models\\ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D990EC73-4DA5-467B-9333-DD1EAF028EA8}|GrTabStore\\GrTabStore.csproj|solutionrelative:grtabstore\\models\\ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122191906_added ads.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GrTabStore\\Migrations\\20251122191906_added ads.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D990EC73-4DA5-467B-9333-DD1EAF028EA8}|GrTabStore\\GrTabStore.csproj|c:\\devlopment\\web\\grtabstore\\backend\\grtabstore\\migrations\\20251122171631_fixed provience brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D990EC73-4DA5-467B-9333-DD1EAF028EA8}|GrTabStore\\GrTabStore.csproj|solutionrelative:grtabstore\\migrations\\20251122171631_fixed provience brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
@@ -37,47 +49,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20251122171631_fixed provience brand.cs",
-              "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs",
-              "RelativeDocumentMoniker": "GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs",
-              "ToolTip": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs",
-              "RelativeToolTip": "GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T17:16:31.87Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Microsoft.Common.CurrentVersion.targets",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "RelativeToolTip": "..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ViewState": "AgIAANoUAAAAAAAAAAArwPMUAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-11-22T17:14:59.458Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProvincesController.cs",
-              "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Controllers\\ProvincesController.cs",
-              "RelativeDocumentMoniker": "GrTabStore\\Controllers\\ProvincesController.cs",
-              "ToolTip": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Controllers\\ProvincesController.cs",
-              "RelativeToolTip": "GrTabStore\\Controllers\\ProvincesController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAcwAwAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T17:13:40.333Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
@@ -92,7 +65,82 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "20251122195649_updated ads, added isDark.cs",
+              "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122195649_updated ads, added isDark.cs",
+              "RelativeDocumentMoniker": "GrTabStore\\Migrations\\20251122195649_updated ads, added isDark.cs",
+              "ToolTip": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122195649_updated ads, added isDark.cs",
+              "RelativeToolTip": "GrTabStore\\Migrations\\20251122195649_updated ads, added isDark.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T19:56:49.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Ad.cs",
+              "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Models\\Ad.cs",
+              "RelativeDocumentMoniker": "GrTabStore\\Models\\Ad.cs",
+              "ToolTip": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Models\\Ad.cs",
+              "RelativeToolTip": "GrTabStore\\Models\\Ad.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T19:55:33.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20251122191906_added ads.cs",
+              "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122191906_added ads.cs",
+              "RelativeDocumentMoniker": "GrTabStore\\Migrations\\20251122191906_added ads.cs",
+              "ToolTip": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122191906_added ads.cs",
+              "RelativeToolTip": "GrTabStore\\Migrations\\20251122191906_added ads.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T19:19:06.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20251122171631_fixed provience brand.cs",
+              "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs",
+              "RelativeDocumentMoniker": "GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs",
+              "ToolTip": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs",
+              "RelativeToolTip": "GrTabStore\\Migrations\\20251122171631_fixed provience brand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T17:16:31.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAANoUAAAAAAAAAAArwPMUAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-11-22T17:14:59.458Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProvincesController.cs",
+              "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Controllers\\ProvincesController.cs",
+              "RelativeDocumentMoniker": "GrTabStore\\Controllers\\ProvincesController.cs",
+              "ToolTip": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Controllers\\ProvincesController.cs",
+              "RelativeToolTip": "GrTabStore\\Controllers\\ProvincesController.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAcwAwAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-22T17:13:40.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "20251121141551_changed product.cs",
               "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Migrations\\20251121141551_changed product.cs",
               "RelativeDocumentMoniker": "GrTabStore\\Migrations\\20251121141551_changed product.cs",
@@ -104,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "GrTabStore\\Data\\AppDbContext.cs",
@@ -116,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "GrTabStore\\Controllers\\ProductsController.cs",
@@ -124,12 +172,11 @@
               "RelativeToolTip": "GrTabStore\\Controllers\\ProductsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T14:14:52.462Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T14:14:52.462Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\devlopment\\web\\GrTabStore\\backend\\GrTabStore\\Models\\Product.cs",
               "RelativeDocumentMoniker": "GrTabStore\\Models\\Product.cs",
