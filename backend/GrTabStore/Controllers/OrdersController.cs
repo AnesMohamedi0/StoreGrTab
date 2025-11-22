@@ -19,8 +19,6 @@ namespace GraphicsTabletStore.API.Controllers
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             return await _context.Orders
-                .Include(o => o.Commune)
-                .ThenInclude(c => c.Province)
                 .Include(o => o.Products)
                 .ToListAsync();
         }
@@ -29,9 +27,6 @@ namespace GraphicsTabletStore.API.Controllers
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
             var order = await _context.Orders
-                .Include(o => o.Products)
-                .Include(o => o.Commune)
-                .ThenInclude(c => c.Province)
                 .FirstOrDefaultAsync(o => o.OrderId == id);
 
             if (order == null)

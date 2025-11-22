@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grtabstore/data/models/commune.dart';
+import 'package:grtabstore/data/models/order.dart';
+import 'package:grtabstore/providers/locationProvider.dart';
 import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:provider/provider.dart';
@@ -13,8 +15,12 @@ class CommuneSelector extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Consumer<OrderProvider>(
-      builder: (context, orderProvider, child) {
+    if (Provider.of<OrderProvider>(context).province == null) {
+      return SizedBox.shrink();
+    }
+
+    return Consumer2<LocationProvider, OrderProvider>(
+      builder: (context, locationProvider, orderProvider, child) {
         return Container(
           margin: EdgeInsets.symmetric(horizontal: width * 0.01),
           padding: EdgeInsets.only(
@@ -41,8 +47,13 @@ class CommuneSelector extends StatelessWidget {
                   child: DropdownButton<Commune>(
                     // Current selected value
                     value:
-                        orderProvider.communes.contains(orderProvider.commune)
-                        ? orderProvider.commune
+                        orderProvider.commune != null &&
+                            locationProvider.communes.any(
+                              (c) => c.id == orderProvider.commune!.id,
+                            )
+                        ? locationProvider.communes.firstWhere(
+                            (c) => c.id == orderProvider.commune!.id,
+                          )
                         : null,
 
                     // Hint text when nothing is selected
@@ -71,7 +82,7 @@ class CommuneSelector extends StatelessWidget {
                     ),
 
                     // Dropdown items
-                    items: orderProvider.communes.map((Commune commune) {
+                    items: locationProvider.communes.map((Commune commune) {
                       return DropdownMenuItem<Commune>(
                         value: commune,
                         child: Text(

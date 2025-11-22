@@ -31,7 +31,7 @@ class TotalPriceDisplay extends StatelessWidget {
                     color: textSecondary,
                   ),
 
-                  if (orderProvider.province.name == 'Alger')
+                  if (orderProvider.province?.name == 'Alger')
                     IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {

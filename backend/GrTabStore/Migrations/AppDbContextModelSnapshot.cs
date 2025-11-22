@@ -60,30 +60,13 @@ namespace GrTabStore.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("GraphicsTabletStore.API.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("GraphicsTabletStore.API.Models.Commune", b =>
                 {
-                    b.Property<int>("CommuneId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommuneId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -92,7 +75,7 @@ namespace GrTabStore.Migrations
                     b.Property<int>("ProvinceId")
                         .HasColumnType("int");
 
-                    b.HasKey("CommuneId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProvinceId");
 
@@ -150,15 +133,31 @@ namespace GrTabStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
+                    b.Property<double>("ActifAreaX")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ActifAreaY")
+                        .HasColumnType("float");
+
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAlmostSoldOut")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsNew")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("OldPrice")
+                        .HasColumnType("float");
 
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("nvarchar(max)");
@@ -170,8 +169,6 @@ namespace GrTabStore.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Products");
                 });
 
@@ -182,6 +179,12 @@ namespace GrTabStore.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("DeskDeliveryFee")
+                        .HasColumnType("float");
+
+                    b.Property<double>("HomeDeliveryFee")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -237,15 +240,7 @@ namespace GrTabStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GraphicsTabletStore.API.Models.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Brand");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("OrderProduct", b =>
@@ -264,11 +259,6 @@ namespace GrTabStore.Migrations
                 });
 
             modelBuilder.Entity("GraphicsTabletStore.API.Models.Brand", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("GraphicsTabletStore.API.Models.Category", b =>
                 {
                     b.Navigation("Products");
                 });

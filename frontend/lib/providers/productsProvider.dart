@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
+import '../services/apiService.dart';
+import 'dart:convert';
 
 class ProductsProvider extends ChangeNotifier {
   List<Product> _products = [];
@@ -18,119 +20,8 @@ class ProductsProvider extends ChangeNotifier {
   (double, double) sizeRangeFilter = (0.0, double.infinity);
 
   ProductsProvider() {
-    _loadDummyData();
+    fetchProductsFromApi();
     sortByPrice(ascending: false);
-  }
-
-  void _loadDummyData() {
-    _products = [
-      Product(
-        productId: 1,
-        name: 'Wacom Intuos S',
-        brandId: 1,
-        price: 11000,
-        actifAreaX: 10,
-        actifAreaY: 6,
-        isAlmostSoldOut: true,
-        photoUrl:
-            'https://tse1.mm.bing.net/th/id/OIP.32MekmCagQTOZ0FyXy_1sgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
-      ),
-      Product(
-        productId: 2,
-        name: 'XP-Pen Deco 01 V2',
-        brandId: 2,
-        price: 12000,
-        oldPrice: 15000,
-        actifAreaX: 10,
-        actifAreaY: 6.25,
-        isNew: true,
-        photoUrl:
-            'https://tse4.mm.bing.net/th/id/OIP.ptbVKksxOMP_juVbhnCTXQHaEV?w=650&h=380&rs=1&pid=ImgDetMain&o=7&rm=3',
-      ),
-      Product(
-        productId: 3,
-        name: 'Huion Kamvas 13',
-        brandId: 3,
-        price: 259.99,
-        actifAreaX: 13,
-        actifAreaY: 7.5,
-        photoUrl:
-            'https://images.unsplash.com/photo-1587573089734-09cb69c185d8?w=500',
-      ),
-      Product(
-        productId: 4,
-        name: 'Wacom Cintiq 16',
-        brandId: 1,
-        price: 649.99,
-        actifAreaX: 16,
-        actifAreaY: 9,
-        photoUrl:
-            'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=500',
-      ),
-      Product(
-        productId: 5,
-        name: 'XP-Pen Artist 12 Pro',
-        brandId: 2,
-        price: 249.99,
-        actifAreaX: 12,
-        actifAreaY: 6.75,
-        photoUrl:
-            'https://images.unsplash.com/photo-1616469829933-2f6b394af870?w=500',
-      ),
-      Product(
-        productId: 6,
-        name: 'Huion Inspiroy H640P',
-        brandId: 3,
-        price: 49.99,
-        actifAreaX: 6.3,
-        actifAreaY: 3.9,
-        photoUrl:
-            'https://images.unsplash.com/photo-1623794348522-b9e1b6cd8df8?w=500',
-      ),
-      Product(
-        productId: 7,
-        name: 'Veikk A50',
-        brandId: 3,
-        price: 59.99,
-        actifAreaX: 10,
-        actifAreaY: 6,
-        photoUrl:
-            'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?w=500',
-      ),
-      Product(
-        productId: 2,
-        name: 'Huion H950P',
-        brandId: 3,
-        price: 89.99,
-        actifAreaX: 8.7,
-        actifAreaY: 5.4,
-        photoUrl:
-            'https://images.unsplash.com/photo-1587573089734-09cb69c185d8?w=500',
-      ),
-      Product(
-        productId: 9,
-        name: 'XP-Pen Deco Pro M',
-        brandId: 2,
-        price: 129.99,
-        actifAreaX: 11,
-        actifAreaY: 6,
-        photoUrl:
-            'https://images.unsplash.com/photo-1626894512663-c43e8a4fca25?w=500',
-      ),
-      Product(
-        productId: 10,
-        name: 'Wacom One 13',
-        brandId: 1,
-        price: 399.99,
-        actifAreaX: 13,
-        actifAreaY: 7.5,
-        photoUrl:
-            'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=500',
-      ),
-    ];
-
-    _filteredProducts = List.from(_products);
-    notifyListeners();
   }
 
   void setProducts(List<Product> products) {
@@ -348,5 +239,20 @@ class ProductsProvider extends ChangeNotifier {
 
   double? getMaxSizeFilter() {
     return sizeRangeFilter.$2;
+  }
+
+  Future<void> fetchProductsFromApi() async {
+    try {
+      final data = await apiService.get(
+        'Products',
+      ); // Use 'Products' (capital P)
+      if (data is List) {
+        _products = data.map((item) => Product.fromJson(item)).toList();
+        _filteredProducts = List.from(_products);
+        notifyListeners();
+      }
+    } catch (e) {
+      print('Error fetching products: $e');
+    }
   }
 }

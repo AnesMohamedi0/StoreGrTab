@@ -1,14 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:grtabstore/data/models/brand.dart';
+import 'package:grtabstore/services/apiService.dart';
 
 class BrandsProvider extends ChangeNotifier {
   List<Brand> brands = [];
 
   BrandsProvider() {
-    brands = LoadDummyData();
+    fetchBrandsFromApi();
   }
 
-  LoadDummyData() {
+  List<Brand> loadDummyData() {
     return [
       Brand(
         brandId: 1,
@@ -65,5 +66,17 @@ class BrandsProvider extends ChangeNotifier {
 
   String getBrandName(int id) {
     return brands.firstWhere((brand) => brand.brandId == id).name;
+  }
+
+  Future<void> fetchBrandsFromApi() async {
+    try {
+      final data = await apiService.get('Brands');
+      if (data is List) {
+        brands = data.map((item) => Brand.fromJson(item)).toList();
+        notifyListeners();
+      }
+    } catch (e) {
+      print('Error fetching brands: $e');
+    }
   }
 }

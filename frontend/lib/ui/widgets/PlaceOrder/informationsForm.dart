@@ -39,7 +39,11 @@ class InformationsForm extends StatelessWidget {
           children: [
             Expanded(
               child: TextForm(
-                controller: TextEditingController(),
+                controller: TextEditingController()
+                  ..text = Provider.of<OrderProvider>(
+                    context,
+                    listen: false,
+                  ).name,
                 label: 'First Name',
                 icon: Icon(
                   Icons.person,
@@ -56,7 +60,11 @@ class InformationsForm extends StatelessWidget {
             ),
             Expanded(
               child: TextForm(
-                controller: TextEditingController(),
+                controller: TextEditingController()
+                  ..text = Provider.of<OrderProvider>(
+                    context,
+                    listen: false,
+                  ).lastName,
                 label: 'Last Name',
                 icon: Icon(
                   Icons.person,
@@ -78,7 +86,11 @@ class InformationsForm extends StatelessWidget {
           children: [
             Expanded(
               child: TextForm(
-                controller: TextEditingController(),
+                controller: TextEditingController()
+                  ..text = Provider.of<OrderProvider>(
+                    context,
+                    listen: false,
+                  ).phoneNumber,
                 label: 'Phone Number',
                 icon: Icon(
                   Icons.phone,

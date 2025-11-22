@@ -19,8 +19,6 @@ namespace GraphicsTabletStore.API.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products
-                .Include(p => p.Brand)
-                .Include(p => p.Category)
                 .ToListAsync();
         }
 

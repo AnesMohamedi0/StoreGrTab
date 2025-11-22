@@ -31,7 +31,7 @@ class DeliveryTypeSelector extends StatelessWidget {
                     color: textSecondary,
                   ),
 
-                  if (orderProvider.province.name == 'Alger')
+                  if (orderProvider.province?.name == 'ALGER')
                     IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
@@ -136,7 +136,7 @@ class DeliveryTypeSelector extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: width * 0.015),
-                  if (orderProvider.province.name == 'Alger')
+                  if (orderProvider.province?.name == 'ALGER')
                     Flexible(
                       child: TextButton(
                         style: TextButton.styleFrom(padding: EdgeInsets.zero),

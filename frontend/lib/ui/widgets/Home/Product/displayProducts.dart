@@ -112,19 +112,34 @@ class ProductDisplay extends StatelessWidget {
                   ),
           ),
 
+          // ...existing code...
           Positioned(
             right: width * 0.03,
             bottom: height * 0.02,
-            child: BrandDisplay(
-              brand:
-                  Provider.of<BrandsProvider>(
-                    context,
-                    listen: false,
-                  ).getBrandById(product.brandId) ??
-                  Brand(brandId: 0, name: ''),
-              width: width,
+            child: Consumer<BrandsProvider>(
+              builder: (context, brandsProvider, child) {
+                final brand = brandsProvider.getBrandById(product.brandId);
+
+                // Show loading or placeholder while brand is not loaded
+                if (brand == null) {
+                  return Container(
+                    width: width * 0.2,
+                    height: width * 0.05,
+                    color: Colors.grey.shade300,
+                    child: Center(
+                      child: Text(
+                        'Loading...',
+                        style: TextStyle(fontSize: width * 0.03),
+                      ),
+                    ),
+                  );
+                }
+
+                return BrandDisplay(brand: brand, width: width);
+              },
             ),
           ),
+          // ...existing code...
           Positioned(
             right: width * 0,
             top: height * 0,

@@ -25,13 +25,11 @@ class PlaceOrderButton extends StatelessWidget {
                 name: orderProvider.name,
                 lastName: orderProvider.lastName,
                 phone: orderProvider.phoneNumber,
-                communeId: orderProvider.commune.id,
+                communeId: orderProvider.commune!.id,
                 deliveryType: orderProvider.deliveryType,
                 totalPrice: orderProvider.getTotalOrderCost(),
-                orderDate: DateTime.now()
+                orderDate: DateTime.now(),
               );
-
-              
             },
             child: Container(
               padding: EdgeInsets.symmetric(

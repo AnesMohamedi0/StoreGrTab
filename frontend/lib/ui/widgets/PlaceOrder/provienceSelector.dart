@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grtabstore/data/models/province.dart';
+import 'package:grtabstore/providers/locationProvider.dart';
 import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:provider/provider.dart';
@@ -13,8 +14,8 @@ class ProvinceSelector extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Consumer<OrderProvider>(
-      builder: (context, orderProvider, child) {
+    return Consumer2<LocationProvider, OrderProvider>(
+      builder: (context, locationProvider, orderProvider, child) {
         return Container(
           margin: EdgeInsets.symmetric(horizontal: width * 0.01),
           padding: EdgeInsets.only(
@@ -35,7 +36,23 @@ class ProvinceSelector extends StatelessWidget {
               Expanded(
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<Province>(
-                    value: orderProvider.province,
+                    // ...existing code...
+                    value:
+                        orderProvider.province != null &&
+                            locationProvider.provinces.any(
+                              (p) => p.id == orderProvider.province!.id,
+                            )
+                        ? locationProvider.provinces.firstWhere(
+                            (p) => p.id == orderProvider.province!.id,
+                          )
+                        : null,
+                    hint: Text(
+                      "Select Province",
+                      style: TextStyle(
+                        color: textSecondary,
+                        fontSize: width * 0.035,
+                      ),
+                    ),
                     isExpanded: true,
                     icon: Icon(
                       Icons.keyboard_arrow_down,
@@ -47,7 +64,7 @@ class ProvinceSelector extends StatelessWidget {
                       color: textPrimary,
                       fontWeight: FontWeight.w600,
                     ),
-                    items: orderProvider.provinces.map((Province province) {
+                    items: locationProvider.provinces.map((Province province) {
                       return DropdownMenuItem<Province>(
                         value: province,
                         child: Text(
@@ -63,8 +80,8 @@ class ProvinceSelector extends StatelessWidget {
                     onChanged: (Province? selectedProvince) {
                       if (selectedProvince != null) {
                         orderProvider.setProvince(selectedProvince);
-                        orderProvider.getAllCommunesForProvince(
-                          selectedProvince,
+                        locationProvider.fetchCommunesByProvinceIdFromApi(
+                          selectedProvince.id,
                         );
                       }
                     },

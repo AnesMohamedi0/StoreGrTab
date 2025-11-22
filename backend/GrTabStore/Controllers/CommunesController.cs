@@ -18,14 +18,26 @@ namespace GraphicsTabletStore.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Commune>>> GetCommunes()
         {
-            return await _context.Communes.Include(c => c.Province).ToListAsync();
+            return await _context.Communes.ToListAsync();
+        }
+
+        [HttpGet("province/{provinceId}")]
+        public async Task<ActionResult<IEnumerable<Commune>>> GetCommunesByProvince(int provinceId)
+        {
+            var communes = await _context.Communes
+                .Where(c => c.ProvinceId == provinceId)
+                .ToListAsync();
+
+            if (communes == null || communes.Count == 0)
+                return NotFound();
+
+            return communes;
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Commune>> GetCommune(int id)
         {
             var commune = await _context.Communes
-                .Include(c => c.Province)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (commune == null)

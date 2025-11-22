@@ -3,8 +3,10 @@
     public class Province
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
-        public ICollection<Commune> Communes { get; set; } = new List<Commune>();
+        public double HomeDeliveryFee { get; set; }
+
+        public double DeskDeliveryFee { get; set; }
     }
 }
