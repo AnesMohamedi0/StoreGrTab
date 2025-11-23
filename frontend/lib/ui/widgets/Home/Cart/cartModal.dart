@@ -122,7 +122,9 @@ class CartModal extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => MobilePlaceOrder(),
                           ),
-                        );
+                        ).then((_) {
+                          Navigator.pop(context);
+                        });
                       },
                       size: width * 0.15,
                     ),

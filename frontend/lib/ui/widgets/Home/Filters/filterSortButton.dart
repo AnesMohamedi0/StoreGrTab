@@ -7,12 +7,16 @@ class FilterSortButton extends StatelessWidget {
   final String label;
   final Icon icon;
   final VoidCallback function;
+  final bool inverted;
+  final bool border;
   const FilterSortButton({
     super.key,
     required this.label,
     required this.icon,
     required this.function,
     required this.size,
+    this.inverted = false,
+    this.border = false,
   });
 
   @override
@@ -27,7 +31,13 @@ class FilterSortButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: textPrimary,
+          color: inverted ? textOnDark : textPrimary,
+          border: border
+              ? Border.all(
+                  color: inverted ? textPrimary : textOnDark,
+                  width: 1.5,
+                )
+              : null,
         ),
         child: Row(
           children: [
@@ -37,7 +47,7 @@ class FilterSortButton extends StatelessWidget {
               text: label,
               fontSize: size * 0.3,
               fontWeight: FontWeight.bold,
-              color: textOnDark,
+              color: inverted ? textPrimary : textOnDark,
             ),
           ],
         ),

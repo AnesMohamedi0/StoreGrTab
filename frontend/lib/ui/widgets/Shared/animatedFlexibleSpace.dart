@@ -3,8 +3,12 @@ import 'package:grtabstore/ui/theme/colors.dart';
 
 class AnimatedFlexibleSpace extends StatefulWidget {
   final bool placeOrder;
-  const AnimatedFlexibleSpace({Key? key, this.placeOrder = false})
-    : super(key: key);
+  final double raduis;
+  const AnimatedFlexibleSpace({
+    Key? key,
+    this.placeOrder = false,
+    this.raduis = 1.5,
+  }) : super(key: key);
 
   @override
   State<AnimatedFlexibleSpace> createState() => _AnimatedFlexibleSpaceState();
@@ -65,7 +69,7 @@ class _AnimatedFlexibleSpaceState extends State<AnimatedFlexibleSpace>
                 Alignment(0.5, 0.8),
                 _animation.value,
               )!,
-              radius: 1.5 + (_animation.value * 0.5),
+              radius: widget.raduis + (_animation.value * 0.5),
               colors: colors,
               stops: stops,
             ),

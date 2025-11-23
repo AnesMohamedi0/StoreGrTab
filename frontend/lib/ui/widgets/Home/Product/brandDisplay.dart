@@ -32,7 +32,30 @@ class BrandDisplay extends StatelessWidget {
             height: width * 0.1,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(1000),
-              child: Image.network(brand.photoUrl ?? '', width: width * 0.15),
+              child: (brand.photoUrl != null && brand.photoUrl!.isNotEmpty)
+                  ? Image.network(
+                      brand.photoUrl!,
+                      width: width * 0.15,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey[300],
+                          child: Icon(
+                            Icons.tablet,
+                            size: width * 0.05,
+                            color: Colors.grey[600],
+                          ),
+                        );
+                      },
+                    )
+                  : Container(
+                      color: Colors.grey[300],
+                      child: Icon(
+                        Icons.tablet,
+                        size: width * 0.05,
+                        color: Colors.grey[600],
+                      ),
+                    ),
             ),
           ),
         ],

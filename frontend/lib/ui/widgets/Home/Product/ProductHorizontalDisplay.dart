@@ -40,7 +40,7 @@ class ProductHorizontalDisplay extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                   border: Border.all(color: textPrimary),
                   image: DecorationImage(
-                    image: NetworkImage(product.photoUrl ?? ''),
+                    image: NetworkImage(product.photoUrl[0]),
                     fit: BoxFit.cover,
                   ),
                 ),

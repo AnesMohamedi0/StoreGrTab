@@ -7,6 +7,8 @@ class ProductsProvider extends ChangeNotifier {
   List<Product> _products = [];
   List<Product> _filteredProducts = [];
 
+  bool isLoading = false;
+
   List<Product> get products => _products;
   List<Product> get filteredProducts => _filteredProducts;
   int sortOption = 1;
@@ -225,10 +227,12 @@ class ProductsProvider extends ChangeNotifier {
       if (data is List) {
         _products = data.map((item) => Product.fromJson(item)).toList();
         _filteredProducts = List.from(_products);
-        notifyListeners();
       }
     } catch (e) {
       print('Error fetching products: $e');
+    } finally {
+      isLoading = false;
+      notifyListeners();
     }
   }
 }

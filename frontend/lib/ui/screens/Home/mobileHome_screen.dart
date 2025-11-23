@@ -54,8 +54,20 @@ class MobileHomeScreen extends StatelessWidget {
                 horizontal: width * 0.03,
                 vertical: height * 0.01,
               ),
-              sliver:
-                  context.watch<ProductsProvider>().filteredProducts.isNotEmpty
+              sliver: context.watch<ProductsProvider>().isLoading
+                  ? SliverToBoxAdapter(
+                      child: Container(
+                        height: height * 0.3,
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          color: electricBlueDarkest,
+                        ),
+                      ),
+                    )
+                  : context
+                        .watch<ProductsProvider>()
+                        .filteredProducts
+                        .isNotEmpty
                   ? SliverGrid(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,

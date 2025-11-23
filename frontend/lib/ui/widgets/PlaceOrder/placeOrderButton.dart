@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/order.dart';
+import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/services/apiService.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
@@ -48,6 +49,8 @@ class PlaceOrderButton extends StatelessWidget {
                   backgroundColor: accentSuccess,
                 ),
               );
+
+              context.read<CartProvider>().clearCart();
 
               Navigator.pop(context);
             },

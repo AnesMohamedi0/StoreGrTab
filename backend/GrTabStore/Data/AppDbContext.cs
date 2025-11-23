@@ -1,4 +1,5 @@
 ﻿
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraphicsTabletStore.API.Models
@@ -23,7 +24,12 @@ public DbSet<Ad> Ads { get; set; }
                 .Property(e => e.OrderId)
                 .ValueGeneratedOnAdd(); // Auto-generate on add
             
-            // ... other configurations
+             modelBuilder.Entity<Product>()
+                .Property(e => e.PhotoUrl)
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                    v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions)null) ?? new List<string>()
+                );
         }
 
     }
