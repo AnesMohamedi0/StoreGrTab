@@ -38,7 +38,7 @@ class ProductNameDisplay extends StatelessWidget {
             child: TitlesText(
               text: 'From ${brand?.name ?? 'Unknown Brand'}',
               fontSize: width * 0.045,
-              color: textSecondary,
+              color: deepPurple,
               fontWeight: FontWeight.bold,
             ),
           ),

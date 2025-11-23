@@ -87,6 +87,11 @@ class _SortSheetState extends State<SortSheet> {
                         );
                       },
                       isSelected: productsProvider.sortOption == 1,
+                      icon: Icon(
+                        Icons.attach_money,
+                        color: textSecondary,
+                        size: width * 0.045,
+                      ),
                     ),
                     SortButton(
                       size: height * 0.55,
@@ -98,6 +103,11 @@ class _SortSheetState extends State<SortSheet> {
                         );
                       },
                       isSelected: productsProvider.sortOption == 2,
+                      icon: Icon(
+                        Icons.attach_money,
+                        color: textSecondary,
+                        size: width * 0.045,
+                      ),
                     ),
                     SortButton(
                       size: height * 0.55,
@@ -109,6 +119,11 @@ class _SortSheetState extends State<SortSheet> {
                         );
                       },
                       isSelected: productsProvider.sortOption == 5,
+                      icon: Icon(
+                        Icons.aspect_ratio,
+                        color: textSecondary,
+                        size: width * 0.045,
+                      ),
                     ),
                     SortButton(
                       size: height * 0.55,
@@ -121,6 +136,11 @@ class _SortSheetState extends State<SortSheet> {
                         );
                       },
                       isSelected: productsProvider.sortOption == 6,
+                      icon: Icon(
+                        Icons.aspect_ratio,
+                        color: textSecondary,
+                        size: width * 0.045,
+                      ),
                     ),
                     SortButton(
                       size: height * 0.55,
@@ -133,6 +153,11 @@ class _SortSheetState extends State<SortSheet> {
                         );
                       },
                       isSelected: productsProvider.sortOption == 4,
+                      icon: Icon(
+                        Icons.text_fields_outlined,
+                        color: textSecondary,
+                        size: width * 0.045,
+                      ),
                     ),
                     SortButton(
                       size: height * 0.55,
@@ -145,6 +170,11 @@ class _SortSheetState extends State<SortSheet> {
                         );
                       },
                       isSelected: productsProvider.sortOption == 3,
+                      icon: Icon(
+                        Icons.text_fields_outlined,
+                        color: textSecondary,
+                        size: width * 0.045,
+                      ),
                     ),
                   ],
                 );

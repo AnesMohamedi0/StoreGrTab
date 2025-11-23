@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
@@ -19,7 +21,7 @@ class PriceDisplay extends StatelessWidget {
           AbelText(
             text: product.price.toStringAsFixed(0),
             fontSize: width * 0.07,
-            color: textPrimary,
+            color: electricBlueDarker,
             fontWeight: FontWeight.bold,
           ),
           Row(
@@ -28,7 +30,7 @@ class PriceDisplay extends StatelessWidget {
               AbelText(
                 text: ' DA',
                 fontSize: width * 0.065,
-                color: textPrimary,
+                color: electricBlueDarker,
                 fontWeight: FontWeight.bold,
               ),
               if (product.oldPrice != null) SizedBox(width: width * 0.02),

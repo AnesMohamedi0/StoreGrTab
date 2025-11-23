@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/ui/widgets/Drawer/drawer.dart';
 import 'package:grtabstore/ui/widgets/Shared/footer.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
@@ -20,6 +21,7 @@ class MobileHomeScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: primaryBackground,
+      drawer: MobileCustomDrawer(),
       body: Center(
         child: CustomScrollView(
           slivers: [

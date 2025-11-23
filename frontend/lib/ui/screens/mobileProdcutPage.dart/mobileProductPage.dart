@@ -118,7 +118,7 @@ class MobileProductPage extends StatelessWidget {
             PriceDisplay(product: product),
             SizedBox(height: height * 0.02),
             PlaceOrderAddCart(product: product),
-            SizedBox(height: height * 0.03),
+            SizedBox(height: height * 0.06),
 
             WebsiteFooter(),
           ],
