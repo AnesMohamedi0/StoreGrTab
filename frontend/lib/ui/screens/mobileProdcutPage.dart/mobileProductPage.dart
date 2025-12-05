@@ -108,11 +108,9 @@ class MobileProductPage extends StatelessWidget {
         height: double.infinity,
         child: ListView(
           children: [
-            SizedBox(height: height * 0.02),
-            ProductNameDisplay(product: product),
             ImagesDisplay(imagesUrl: product.photoUrl),
-            SizedBox(height: height * 0.02),
-
+            SizedBox(height: height * 0.01),
+            ProductNameDisplay(product: product),
             ItemDescription(product: product),
             SizedBox(height: height * 0.01),
             PriceDisplay(product: product),

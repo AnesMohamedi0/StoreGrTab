@@ -23,78 +23,54 @@ class _ImagesDisplayState extends State<ImagesDisplay> {
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      height: width * 0.6,
+      height: width * 0.71,
       width: double.infinity,
       child: Stack(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         children: [
           AnimatedFooter(),
-          Column(
-            children: [
-              SizedBox(height: width * 0.05),
-
-              CarouselSlider(
-                carouselController: _carouselController, // This should now work
-                options: CarouselOptions(
-                  height: width * 0.5,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 5),
-                  enlargeCenterPage: true,
-                  aspectRatio: 0.75,
-                  enableInfiniteScroll: true,
-                  viewportFraction: 0.8,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _currentIndex = index;
-                    });
-                  },
-                ),
-                items: widget.imagesUrl.map((imageUrl) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                        width: width * 0.8,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          //border: Border.all(color: electricBlueDark, width: 2),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            imageUrl,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: Colors.grey[300],
-                                child: Icon(Icons.image, size: 50),
-                              );
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
-              SizedBox(height: height * 0.01),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: widget.imagesUrl.asMap().entries.map((entry) {
+          CarouselSlider(
+            carouselController: _carouselController, // This should now work
+            options: CarouselOptions(
+              height: width * 0.7,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 5),
+              enlargeCenterPage: true,
+              aspectRatio: 0.7,
+              enableInfiniteScroll: true,
+              viewportFraction: 1,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+            ),
+            items: widget.imagesUrl.map((imageUrl) {
+              return Builder(
+                builder: (BuildContext context) {
                   return Container(
-                    width: _currentIndex == entry.key ? 16.0 : 8.0,
-                    height: 8.0,
-                    margin: EdgeInsets.symmetric(horizontal: 2.0),
+                    width: width,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
-                      color: _currentIndex == entry.key
-                          ? white
-                          : electricBlueLightest,
+                      borderRadius: BorderRadius.circular(10),
+                      //border: Border.all(color: electricBlueDark, width: 2),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        imageUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[300],
+                            child: Icon(Icons.image, size: 50),
+                          );
+                        },
+                      ),
                     ),
                   );
-                }).toList(),
-              ),
-            ],
+                },
+              );
+            }).toList(),
           ),
         ],
       ),

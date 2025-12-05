@@ -520,3 +520,4 @@ C:\devlopment\web\GrTabStore\backend\GrTabStore\obj\Debug\net8.0\refint\GrTabSto
 C:\devlopment\web\GrTabStore\backend\GrTabStore\obj\Debug\net8.0\GrTabStore.pdb
 C:\devlopment\web\GrTabStore\backend\GrTabStore\obj\Debug\net8.0\GrTabStore.genruntimeconfig.cache
 C:\devlopment\web\GrTabStore\backend\GrTabStore\obj\Debug\net8.0\ref\GrTabStore.dll
+C:\devlopment\web\GrTabStore\backend\GrTabStore\bin\Debug\net8.0\BCrypt.Net-Next.dll

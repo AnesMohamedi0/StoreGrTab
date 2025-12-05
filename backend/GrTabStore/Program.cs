@@ -3,32 +3,34 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add controllers
 builder.Services.AddControllers();
 
-// ✅ Add DbContext and read connection string
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-// ...existing code...
-// ...existing code...
+
+// Add session support
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(2);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.AllowAnyOrigin()  // Allow any origin for development
+        policy.AllowAnyOrigin() 
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
-// ...existing code...
-
-// Add Swagger (optional but useful for testing)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Use Swagger in dev mode
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -37,6 +39,25 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowFrontend");
 
+app.UseSession();
+
 app.UseAuthorization();
 app.MapControllers();
+
+// Seed default admin if none exists
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    if (!context.Admins.Any())
+    {
+        var defaultAdmin = new Admin
+        {
+            Email = "admin@grtabstore.com",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123!")
+        };
+        context.Admins.Add(defaultAdmin);
+        await context.SaveChangesAsync();
+    }
+}
+
 app.Run();

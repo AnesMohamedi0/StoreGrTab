@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrTabStore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91e1b9bdd896b5039f0b658d354cc9f8ff3841a1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6cb018a4f28e064c23dce7b3ed1606159e62c9aa")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrTabStore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrTabStore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,7 +4,7 @@ import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/communeSelector.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/deliveryType.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/provienceSelector.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/textForm.dart';
+import 'package:grtabstore/ui/widgets/Shared/textForm.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 

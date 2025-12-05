@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Add this import
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:grtabstore/providers/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
@@ -126,6 +127,11 @@ class _PriceFilterState extends State<PriceFilter> {
       ),
       height: height * 0.04,
       child: TextField(
+        style: GoogleFonts.abel(
+          fontSize: width * 0.035,
+          color: textPrimary,
+          fontWeight: FontWeight.bold,
+        ),
         controller: controller,
         keyboardType: TextInputType.numberWithOptions(
           decimal: true,
@@ -145,7 +151,6 @@ class _PriceFilterState extends State<PriceFilter> {
           isDense: true,
           contentPadding: EdgeInsets.zero,
         ),
-        style: TextStyle(fontSize: width * 0.035, color: textPrimary),
       ),
     );
   }

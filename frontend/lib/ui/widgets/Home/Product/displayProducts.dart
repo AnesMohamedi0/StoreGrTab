@@ -3,10 +3,12 @@ import 'package:grtabstore/data/models/brand.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/providers/brandsProvider.dart';
 import 'package:grtabstore/providers/cartProvider.dart';
+import 'package:grtabstore/ui/screens/Home/desktopHome_screen.dart';
 import 'package:grtabstore/ui/screens/mobileProdcutPage.dart/mobileProductPage.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Product/brandDisplay.dart';
 import 'package:grtabstore/ui/widgets/Home/Product/newAlmost.dart';
+import 'package:grtabstore/ui/widgets/Shared/responsiveLayout.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +31,10 @@ class ProductDisplay extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MobileProductPage(product: product),
+            builder: (context) => ResponsiveLayout(
+              mobile: MobileProductPage(product: product),
+              desktop: DesktopHomeScreen(),
+            ),
           ),
         );
       },

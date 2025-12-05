@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/providers/orderProvider.dart';
+import 'package:grtabstore/ui/screens/Home/desktopHome_screen.dart';
 import 'package:grtabstore/ui/screens/PlaceOrder/mobilePlaceOrder.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Cart/cartModal.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filterSortButton.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/placeOrderButton.dart';
+import 'package:grtabstore/ui/widgets/Shared/responsiveLayout.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -111,7 +113,12 @@ class PlaceOrderAddCart extends StatelessWidget {
                   products;
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MobilePlaceOrder()),
+                MaterialPageRoute(
+                  builder: (context) => ResponsiveLayout(
+                    mobile: MobilePlaceOrder(),
+                    desktop: DesktopHomeScreen(),
+                  ),
+                ),
               ).then((_) {
                 Navigator.pop(context);
               });
