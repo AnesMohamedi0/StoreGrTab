@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/providers/authProvider.dart';
+import 'package:grtabstore/ui/screens/Admin/desktopAdminPage.dart';
+import 'package:grtabstore/ui/screens/Admin/mobileAdminPage.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Cart/cartModal.dart';
 import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Shared/loginModal.dart';
+import 'package:grtabstore/ui/widgets/Shared/responsiveLayout.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
+import 'package:provider/provider.dart';
 
 class MobileCustomDrawer extends StatelessWidget {
   const MobileCustomDrawer({super.key});
@@ -89,21 +94,40 @@ class MobileCustomDrawer extends StatelessWidget {
               ],
             ),
           ),
-          ListTile(
-            leading: Icon(
-              Icons.person,
-              color: textSecondary,
-              size: width * 0.06,
-            ),
-            title: AbelText(
-              text: 'Connection',
-              fontSize: width * 0.048,
-              color: textPrimary,
-            ),
-            onTap: () async {
-              Navigator.pop(context);
-              await Future.delayed(Duration(milliseconds: 200));
-              showLoginModal(context);
+          Consumer<AuthProvider>(
+            builder: (context, authProvider, child) {
+              return ListTile(
+                leading: Icon(
+                  authProvider.isAuthenticated
+                      ? Icons.admin_panel_settings
+                      : Icons.login,
+                  color: textSecondary,
+                  size: width * 0.06,
+                ),
+                title: AbelText(
+                  text: authProvider.isAuthenticated ? 'Admin Panel' : 'Login',
+                  fontSize: width * 0.048,
+                  color: textPrimary,
+                ),
+                onTap: () async {
+                  if (authProvider.isAuthenticated) {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResponsiveLayout(
+                          mobile: MobileAdminPage(),
+                          desktop: DesktopAdminPage(),
+                        ),
+                      ),
+                    );
+                  } else {
+                    Navigator.pop(context);
+                    await Future.delayed(Duration(milliseconds: 200));
+                    showLoginModal(context);
+                  }
+                },
+              );
             },
           ),
           ListTile(

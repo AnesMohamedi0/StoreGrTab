@@ -46,7 +46,7 @@ class MobileHomeScreen extends StatelessWidget {
             ),
 
             SliverToBoxAdapter(
-              child: Adspace(height: height * 0.3), // Remove Consumer wrapper
+              child: Adspace(height: height * 0.2), // Remove Consumer wrapper
             ),
 
             SliverToBoxAdapter(child: FiltersSpace(height: height * 0.12)),
@@ -95,7 +95,6 @@ class MobileHomeScreen extends StatelessWidget {
                       ),
                     )
                   : SliverToBoxAdapter(
-                      // ✅ Wrap Container in SliverToBoxAdapter
                       child: Container(
                         height: height * 0.3,
                         alignment: Alignment.center,

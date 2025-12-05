@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grtabstore/providers/authProvider.dart';
 import 'package:grtabstore/services/adminService.dart';
+import 'package:grtabstore/ui/screens/Admin/desktopAdminPage.dart';
+import 'package:grtabstore/ui/screens/Admin/mobileAdminPage.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filterSortButton.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/sortButton.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/placeOrderButton.dart';
+import 'package:grtabstore/ui/widgets/Shared/responsiveLayout.dart';
 import 'package:grtabstore/ui/widgets/Shared/textForm.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
+import 'package:provider/provider.dart';
 
 class LoginModal extends StatefulWidget {
   const LoginModal({super.key});
@@ -151,7 +156,6 @@ class _LoginModalState extends State<LoginModal> {
   }
 
   void _handleLogin() async {
-    // Add your login logic here
     final username = _usernameController.text.trim();
     final password = _passwordController.text.trim();
 
@@ -165,16 +169,20 @@ class _LoginModalState extends State<LoginModal> {
       return;
     }
 
-    bool loginSuccess = await AdminService().login(username, password);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    bool loginSuccess = await authProvider.login(username, password);
 
     if (loginSuccess) {
-      Navigator.pop(context, true);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('valid credentials'),
-          backgroundColor: Colors.green,
+      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResponsiveLayout(
+            mobile: MobileAdminPage(),
+            desktop: DesktopAdminPage(),
+          ),
         ),
-      ); // Return true on successful login
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

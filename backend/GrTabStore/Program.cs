@@ -52,8 +52,8 @@ using (var scope = app.Services.CreateScope())
     {
         var defaultAdmin = new Admin
         {
-            Email = "admin@grtabstore.com",
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123!")
+            Email = "admin@gmail.com",
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin")
         };
         context.Admins.Add(defaultAdmin);
         await context.SaveChangesAsync();

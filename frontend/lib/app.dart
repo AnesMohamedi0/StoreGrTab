@@ -9,13 +9,28 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'GrTabStore',
       debugShowCheckedModeBanner: false,
-
-      home: ResponsiveLayout(
-        mobile: MobileHomeScreen(),
-        desktop: DesktopHomeScreen(),
-      ),
+      title: 'GrTabStore',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ResponsiveLayout(
+          mobile: MobileHomeScreen(),
+          desktop: DesktopHomeScreen(),
+        ),
+        '/home': (context) => ResponsiveLayout(
+          mobile: MobileHomeScreen(),
+          desktop: DesktopHomeScreen(),
+        ),
+      },
+      // Handle unknown routes
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => ResponsiveLayout(
+            mobile: MobileHomeScreen(),
+            desktop: DesktopHomeScreen(),
+          ),
+        );
+      },
     );
   }
 }

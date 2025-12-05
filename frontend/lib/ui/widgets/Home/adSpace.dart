@@ -144,7 +144,7 @@ class _AdspaceState extends State<Adspace> {
             left: widget.height * 0.05,
             child: AbelText(
               text: currentAd.title,
-              fontSize: widget.height * 0.075,
+              fontSize: widget.height * 0.1,
               color: currentAd.isDark ? textOnBlue : textPrimary,
               fontWeight: FontWeight.bold,
             ),
@@ -162,15 +162,17 @@ class _AdspaceState extends State<Adspace> {
                   _ads.length,
                   (index) => AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: widget.height * 0.01,
+                    ),
                     width: index == _currentIndex
-                        ? widget.height * 0.06
-                        : widget.height * 0.03,
-                    height: widget.height * 0.03,
+                        ? widget.height * 0.10
+                        : widget.height * 0.05,
+                    height: widget.height * 0.05,
 
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: textPrimary, width: 1.5),
                     ),
                   ),

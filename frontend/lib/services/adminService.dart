@@ -22,4 +22,33 @@ class AdminService {
       return false;
     }
   }
+
+  Future<bool> logout() async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/admin/logout'),
+        headers: {'Content-Type': 'application/json'},
+      );
+      return response.statusCode == 200;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> checkAuth() async {
+    try {
+      final response = await http.get(
+        Uri.parse('$baseUrl/admin/check-auth'),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return data['isAuthenticated'] ?? false;
+      }
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
 }

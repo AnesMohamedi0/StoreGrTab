@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/providers/authProvider.dart';
 import 'package:grtabstore/providers/brandsProvider.dart';
 import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/providers/locationProvider.dart';
@@ -18,6 +19,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => OrderProvider()),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
       ],
       child: const App(),
     ),
