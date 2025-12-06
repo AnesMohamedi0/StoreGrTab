@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grtabstore/providers/cartProvider.dart';
-import 'package:grtabstore/providers/orderProvider.dart';
-import 'package:grtabstore/providers/productsProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/cartProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:grtabstore/ui/screens/Home/desktopHome_screen.dart';
 import 'package:grtabstore/ui/screens/PlaceOrder/mobilePlaceOrder.dart';
 import 'package:grtabstore/ui/theme/colors.dart';

@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
-import 'package:grtabstore/providers/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/Home/Filters/filterSortButton.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/informationsForm.dart';
-import 'package:grtabstore/ui/widgets/Home/Product/ProductHorizontalDisplay.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/placeOrderButton.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/priceDisplay.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/productsToOrder.dart';
+import 'package:grtabstore/ui/widgets/PlaceOrder/terms.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/footer.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
-import 'package:provider/provider.dart';
 
 class MobilePlaceOrder extends StatelessWidget {
   const MobilePlaceOrder({super.key});
@@ -100,7 +97,9 @@ class MobilePlaceOrder extends StatelessWidget {
 
                   TotalPriceDisplay(),
 
-                  SizedBox(height: height * 0.02),
+                  SizedBox(height: height * 0.01),
+
+                  TermsCheck(),
 
                   PlaceOrderButton(),
 

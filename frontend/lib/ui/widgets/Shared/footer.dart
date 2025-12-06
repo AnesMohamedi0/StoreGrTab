@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/socialMediaButton.dart';
-import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFooter.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 

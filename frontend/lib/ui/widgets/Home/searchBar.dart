@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grtabstore/providers/productsProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:provider/provider.dart';
 

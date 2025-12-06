@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grtabstore/providers/authProvider.dart';
-import 'package:grtabstore/services/adminService.dart';
 import 'package:grtabstore/ui/screens/Admin/desktopAdminPage.dart';
 import 'package:grtabstore/ui/screens/Admin/mobileAdminPage.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filterSortButton.dart';
-import 'package:grtabstore/ui/widgets/Home/Filters/sortButton.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/placeOrderButton.dart';
 import 'package:grtabstore/ui/widgets/Shared/responsiveLayout.dart';
 import 'package:grtabstore/ui/widgets/Shared/textForm.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';

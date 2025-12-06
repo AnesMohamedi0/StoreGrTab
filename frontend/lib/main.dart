@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/providers/AdminProvider/adminAdsProvider.dart';
 import 'package:grtabstore/providers/authProvider.dart';
-import 'package:grtabstore/providers/brandsProvider.dart';
-import 'package:grtabstore/providers/cartProvider.dart';
-import 'package:grtabstore/providers/locationProvider.dart';
-import 'package:grtabstore/providers/orderProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/brandsProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/cartProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/locationProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:grtabstore/providers/productsProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/productsProvider.dart';
 import 'app.dart';
 import 'dart:io';
 
@@ -20,6 +21,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => OrderProvider()),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => AdminAdsProvider()),
       ],
       child: const App(),
     ),

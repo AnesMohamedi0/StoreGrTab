@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/commune.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/data/models/province.dart';
-import 'package:grtabstore/providers/cartProvider.dart';
-import 'package:provider/provider.dart';
 
 class OrderProvider extends ChangeNotifier {
   List<(Product, int)> products = [];
+  bool isAgreedToTerms = false;
   String name = '';
   String lastName = '';
   String phoneNumber = '';
@@ -17,6 +16,11 @@ class OrderProvider extends ChangeNotifier {
 
   OrderProvider() {
     deliveryType = 0; // Default to Desk pickup
+  }
+
+  void triggerAgreedToTerms() {
+    isAgreedToTerms = !isAgreedToTerms;
+    notifyListeners();
   }
 
   void setProvince(Province newProvince) {
@@ -36,7 +40,8 @@ class OrderProvider extends ChangeNotifier {
         lastName.isNotEmpty &&
         phoneNumber.isNotEmpty &&
         commune != null &&
-        province != null;
+        province != null &&
+        isAgreedToTerms;
   }
 
   bool canDeleteProduct() {

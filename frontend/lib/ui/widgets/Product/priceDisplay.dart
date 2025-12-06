@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
@@ -15,34 +13,48 @@ class PriceDisplay extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
         children: [
-          AbelText(
-            text: product.price.toStringAsFixed(0),
-            fontSize: width * 0.07,
-            color: electricBlueDarker,
-            fontWeight: FontWeight.bold,
-          ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              Icon(Icons.price_change, color: textPrimary, size: width * 0.05),
+              SizedBox(width: width * 0.02),
               AbelText(
-                text: ' DA',
-                fontSize: width * 0.065,
-                color: electricBlueDarker,
-                fontWeight: FontWeight.bold,
+                text: 'Price:',
+                fontSize: width * 0.048,
+                color: textPrimary,
               ),
-              if (product.oldPrice != null) SizedBox(width: width * 0.02),
-              if (product.oldPrice != null)
-                AbelText(
-                  text: '${product.oldPrice!.toStringAsFixed(0)} DA',
-                  fontSize: width * 0.04,
-                  color: textTertiary,
-                  fontWeight: FontWeight.w400,
-                  lineThrough: true,
-                ),
             ],
+          ),
+
+          Padding(
+            padding: EdgeInsetsGeometry.only(left: width * 0.01),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (product.oldPrice != null)
+                  AbelText(
+                    text: '${product.oldPrice!.toStringAsFixed(0)} DA',
+                    fontSize: width * 0.04,
+                    color: textTertiary,
+                    fontWeight: FontWeight.w400,
+                    lineThrough: true,
+                  ),
+                if (product.oldPrice != null) SizedBox(width: width * 0.015),
+                AbelText(
+                  text: product.price.toStringAsFixed(0),
+                  fontSize: width * 0.06,
+                  color: textSecondary,
+                  fontWeight: FontWeight.bold,
+                ),
+                AbelText(
+                  text: ' DA',
+                  fontSize: width * 0.057,
+                  color: textSecondary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ],
+            ),
           ),
         ],
       ),

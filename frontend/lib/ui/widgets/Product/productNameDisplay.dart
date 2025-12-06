@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/brand.dart';
 import 'package:grtabstore/data/models/product.dart';
-import 'package:grtabstore/providers/brandsProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/brandsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +38,7 @@ class ProductNameDisplay extends StatelessWidget {
             child: TitlesText(
               text: 'From ${brand?.name ?? 'Unknown Brand'}',
               fontSize: width * 0.045,
-              color: deepPurple,
+              color: electricBlueDark,
               fontWeight: FontWeight.bold,
             ),
           ),

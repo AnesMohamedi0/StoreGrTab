@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grtabstore/providers/orderProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/communeSelector.dart';
 import 'package:grtabstore/ui/widgets/PlaceOrder/deliveryType.dart';

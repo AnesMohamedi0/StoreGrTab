@@ -1,6 +1,3 @@
-import 'commune.dart';
-import 'product.dart';
-
 class Order {
   final int orderId;
   final String name;

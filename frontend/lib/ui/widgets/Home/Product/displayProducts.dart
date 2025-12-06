@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grtabstore/data/models/brand.dart';
 import 'package:grtabstore/data/models/product.dart';
-import 'package:grtabstore/providers/brandsProvider.dart';
-import 'package:grtabstore/providers/cartProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/brandsProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/cartProvider.dart';
 import 'package:grtabstore/ui/screens/Home/desktopHome_screen.dart';
 import 'package:grtabstore/ui/screens/mobileProdcutPage.dart/mobileProductPage.dart';
 import 'package:grtabstore/ui/theme/colors.dart';

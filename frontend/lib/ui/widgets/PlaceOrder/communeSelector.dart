@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grtabstore/data/models/commune.dart';
-import 'package:grtabstore/data/models/order.dart';
-import 'package:grtabstore/providers/locationProvider.dart';
-import 'package:grtabstore/providers/orderProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/locationProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:provider/provider.dart';
 

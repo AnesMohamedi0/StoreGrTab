@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
+import 'package:grtabstore/ui/widgets/Shared/infoDialog.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
 class ItemDescription extends StatelessWidget {
   final Product product;
   const ItemDescription({super.key, required this.product});
+
+  void _showInfoDialog(BuildContext context, String title, String description) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return InfoDialog(title: title, description: description);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +27,8 @@ class ItemDescription extends StatelessWidget {
         children: [
           Row(
             children: [
+              Icon(Icons.aspect_ratio, color: textPrimary, size: width * 0.05),
+              SizedBox(width: width * 0.02),
               AbelText(
                 text: 'Product Description:',
                 fontSize: width * 0.048,
@@ -31,11 +43,6 @@ class ItemDescription extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.aspect_ratio,
-                    color: textSecondary,
-                    size: width * 0.06,
-                  ),
                   SizedBox(width: width * 0.01),
                   AbelText(
                     text: 'Active Area (Dimensions):',
@@ -45,7 +52,11 @@ class ItemDescription extends StatelessWidget {
                   IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      // Handle icon button press
+                      _showInfoDialog(
+                        context,
+                        'Active Area',
+                        'The active area is the working surface of the tablet where your stylus movements are detected. This measurement shows the width and height in inches of the drawing area you can use.',
+                      );
                     },
                     icon: Icon(
                       Icons.info,
@@ -76,11 +87,6 @@ class ItemDescription extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.aspect_ratio,
-                    color: textSecondary,
-                    size: width * 0.06,
-                  ),
                   SizedBox(width: width * 0.01),
                   AbelText(
                     text: 'Dimensions:',
@@ -90,7 +96,11 @@ class ItemDescription extends StatelessWidget {
                   IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      // Handle icon button press
+                      _showInfoDialog(
+                        context,
+                        'Dimensions',
+                        'The overall physical size of the tablet including the border and frame. This tells you how much desk space the tablet will occupy.',
+                      );
                     },
                     icon: Icon(
                       Icons.info,
@@ -114,11 +124,6 @@ class ItemDescription extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.cast_connected,
-                    color: textSecondary,
-                    size: width * 0.06,
-                  ),
                   SizedBox(width: width * 0.01),
                   AbelText(
                     text: 'Connection Type:',
@@ -128,7 +133,11 @@ class ItemDescription extends StatelessWidget {
                   IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      // Handle icon button press
+                      _showInfoDialog(
+                        context,
+                        'Connection Type',
+                        'How the tablet connects to your computer. Wired tablets connect via USB cable, wireless tablets connect via Bluetooth or wireless receiver, and some support both options.',
+                      );
                     },
                     icon: Icon(
                       Icons.info,
@@ -152,7 +161,6 @@ class ItemDescription extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.usb, color: textSecondary, size: width * 0.06),
                   SizedBox(width: width * 0.01),
                   AbelText(
                     text: 'USB Port Type:',
@@ -162,7 +170,11 @@ class ItemDescription extends StatelessWidget {
                   IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      // Handle icon button press
+                      _showInfoDialog(
+                        context,
+                        'USB Port Type',
+                        'The type of USB connector used by the tablet. USB-C is the newest standard with faster data transfer and reversible connection. USB-A is the traditional rectangular connector. Some tablets may use Micro-USB.',
+                      );
                     },
                     icon: Icon(
                       Icons.info,
@@ -186,11 +198,6 @@ class ItemDescription extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.computer,
-                    color: textSecondary,
-                    size: width * 0.06,
-                  ),
                   SizedBox(width: width * 0.01),
                   AbelText(
                     text: 'Compatible with:',
@@ -200,7 +207,11 @@ class ItemDescription extends StatelessWidget {
                   IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      // Handle icon button press
+                      _showInfoDialog(
+                        context,
+                        'Compatible Operating Systems',
+                        'The operating systems that support this tablet. Most tablets work with Windows, macOS, and Linux. Some may have limited functionality on certain systems, so check compatibility before purchasing.',
+                      );
                     },
                     icon: Icon(
                       Icons.info,
@@ -224,11 +235,6 @@ class ItemDescription extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.speaker_phone_rounded,
-                    color: textSecondary,
-                    size: width * 0.06,
-                  ),
                   SizedBox(width: width * 0.01),
                   AbelText(
                     text: 'Report Rate:',
@@ -238,7 +244,11 @@ class ItemDescription extends StatelessWidget {
                   IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      // Handle icon button press
+                      _showInfoDialog(
+                        context,
+                        'Report Rate',
+                        'How many times per second the tablet reports your pen position to the computer (RPS = Reports Per Second). Higher values mean smoother and more responsive drawing. Professional artists typically prefer 200+ RPS.',
+                      );
                     },
                     icon: Icon(
                       Icons.info,
@@ -262,7 +272,6 @@ class ItemDescription extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.tablet, color: textSecondary, size: width * 0.06),
                   SizedBox(width: width * 0.01),
                   AbelText(
                     text: 'Resolution:',
@@ -272,7 +281,11 @@ class ItemDescription extends StatelessWidget {
                   IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      // Handle icon button press
+                      _showInfoDialog(
+                        context,
+                        'Resolution',
+                        'The precision of the tablet measured in Lines Per Inch (LPI). Higher resolution means the tablet can detect smaller movements and provide more accurate drawing. Professional tablets typically have 2540+ LPI.',
+                      );
                     },
                     icon: Icon(
                       Icons.info,

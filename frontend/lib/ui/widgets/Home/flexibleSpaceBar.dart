@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grtabstore/providers/cartProvider.dart';
-import 'package:grtabstore/providers/productsProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/cartProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Home/Cart/cartModal.dart';
 import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
-import 'package:grtabstore/ui/widgets/Home/socialMediaButton.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -18,8 +16,6 @@ class CustomFlexibleSpaceContent extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-    double collapseRatioInversed = 1 - collapseRatio;
 
     return Container(
       child: Stack(

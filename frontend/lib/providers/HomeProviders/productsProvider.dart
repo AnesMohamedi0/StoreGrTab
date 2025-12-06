@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
-import '../services/apiService.dart';
-import 'dart:convert';
+import '../../services/apiService.dart';
 
 class ProductsProvider extends ChangeNotifier {
   List<Product> _products = [];

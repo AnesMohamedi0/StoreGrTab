@@ -1,16 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:grtabstore/providers/brandsProvider.dart';
-import 'package:grtabstore/providers/cartProvider.dart';
-import 'package:grtabstore/providers/productsProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/Home/Filters/brandFilter.dart';
-import 'package:grtabstore/ui/widgets/Home/Filters/priceFilter.dart';
-import 'package:grtabstore/ui/widgets/Home/Filters/sizeFilter.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/sortButton.dart';
-import 'package:grtabstore/ui/widgets/Home/Filters/statueFilter.dart';
-import 'package:grtabstore/ui/widgets/Home/Product/newAlmost.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 

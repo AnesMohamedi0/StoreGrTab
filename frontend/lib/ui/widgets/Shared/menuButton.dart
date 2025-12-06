@@ -8,7 +8,6 @@ class MenuButton extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return IconButton(
       onPressed: () {
-        // Open drawer
         Scaffold.of(context).openDrawer();
       },
       icon: const Icon(Icons.menu),

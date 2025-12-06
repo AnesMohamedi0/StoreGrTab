@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grtabstore/providers/orderProvider.dart';
+import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Product/ProductHorizontalDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';

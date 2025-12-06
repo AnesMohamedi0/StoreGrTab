@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFooter.dart';
 
 class ImagesDisplay extends StatefulWidget {
@@ -13,14 +11,13 @@ class ImagesDisplay extends StatefulWidget {
 }
 
 class _ImagesDisplayState extends State<ImagesDisplay> {
-  int _currentIndex = 0;
+  int currentIndex = 0;
   final CarouselSliderController _carouselController =
-      CarouselSliderController(); // Changed this line
+      CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return Container(
       height: width * 0.71,
@@ -41,7 +38,7 @@ class _ImagesDisplayState extends State<ImagesDisplay> {
               viewportFraction: 1,
               onPageChanged: (index, reason) {
                 setState(() {
-                  _currentIndex = index;
+                  currentIndex = index;
                 });
               },
             ),

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
-import 'package:grtabstore/providers/cartProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/Home/Cart/cartModal.dart';
-import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Product/itemDescription.dart';
 import 'package:grtabstore/ui/widgets/Product/imagesDisplay.dart';
 import 'package:grtabstore/ui/widgets/Product/placeOrderAddCart.dart';
@@ -12,11 +9,10 @@ import 'package:grtabstore/ui/widgets/Product/productNameDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Shared/footer.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
-import 'package:provider/provider.dart';
 
 class MobileProductPage extends StatelessWidget {
-  Product product;
-  MobileProductPage({super.key, required this.product});
+  final Product product;
+  const MobileProductPage({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -34,60 +30,7 @@ class MobileProductPage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        actions: [
-          Consumer<CartProvider>(
-            builder: (context, provider, _) {
-              return Positioned(
-                top: height * 0.01,
-                right: 0,
-                child: TextButton(
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      backgroundColor: Colors.white,
-                      builder: (context) {
-                        return FractionallySizedBox(child: const CartModal());
-                      },
-                    );
-                  },
-                  child: SizedBox(
-                    width: width * 0.1,
-                    height: height * 0.06,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Icon(
-                          Icons.shopping_cart_rounded,
-                          color: Colors.white,
-                          size: width * 0.08,
-                        ),
-                        Positioned(
-                          top: -width * 0.02,
-                          left: width * 0.04,
-                          right: width * 0.01,
-                          child: Container(
-                            width: provider.getTotalItems() <= 9
-                                ? width * 0.04
-                                : width * 0.06,
-                            height: width * 0.065,
-                            color: deepPurpleDark,
-                            alignment: Alignment.bottomCenter,
-                            child: AbelText(
-                              text: provider.getTotalItems().toString(),
-                              color: textOnBlue,
-                              fontSize: width * 0.04,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
+
         flexibleSpace: Stack(
           alignment: Alignment.center,
           children: [
@@ -104,22 +47,63 @@ class MobileProductPage extends StatelessWidget {
         centerTitle: true,
       ),
 
-      body: Container(
-        height: double.infinity,
-        child: ListView(
-          children: [
-            ImagesDisplay(imagesUrl: product.photoUrl),
-            SizedBox(height: height * 0.01),
-            ProductNameDisplay(product: product),
-            ItemDescription(product: product),
-            SizedBox(height: height * 0.01),
-            PriceDisplay(product: product),
-            SizedBox(height: height * 0.02),
-            PlaceOrderAddCart(product: product),
-            SizedBox(height: height * 0.06),
-
-            WebsiteFooter(),
-          ],
+      body: SafeArea(
+        child: Container(
+          height: double.infinity,
+          child: ListView(
+            children: [
+              // Add error boundary for images
+              Builder(
+                builder: (context) {
+                  try {
+                    return ImagesDisplay(imagesUrl: product.photoUrl);
+                  } catch (e) {
+                    print('Error loading product images: $e');
+                    return Container(
+                      height: width * 0.7,
+                      decoration: BoxDecoration(
+                        color: cardBackground,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.image_not_supported,
+                              size: width * 0.1,
+                              color: textSecondary,
+                            ),
+                            SizedBox(height: height * 0.01),
+                            Text(
+                              'Image not available',
+                              style: TextStyle(color: textSecondary),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+              SizedBox(height: height * 0.01),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.01),
+                child: Column(
+                  children: [
+                    ProductNameDisplay(product: product),
+                    ItemDescription(product: product),
+                    SizedBox(height: height * 0.01),
+                    PriceDisplay(product: product),
+                    SizedBox(height: height * 0.02),
+                    PlaceOrderAddCart(product: product),
+                    SizedBox(height: height * 0.06),
+                  ],
+                ),
+              ),
+              WebsiteFooter(),
+            ],
+          ),
         ),
       ),
     );
