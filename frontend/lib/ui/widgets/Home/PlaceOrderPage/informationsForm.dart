@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/communeSelector.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/deliveryType.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/provienceSelector.dart';
+import 'package:grtabstore/ui/widgets/Home/PlaceOrderPage/communeSelector.dart';
+import 'package:grtabstore/ui/widgets/Home/PlaceOrderPage/deliveryType.dart';
+import 'package:grtabstore/ui/widgets/Home/PlaceOrderPage/provienceSelector.dart';
+import 'package:grtabstore/ui/widgets/Shared/infoDialog.dart';
 import 'package:grtabstore/ui/widgets/Shared/textForm.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,16 @@ class InformationsForm extends StatelessWidget {
             IconButton(
               padding: EdgeInsets.zero,
               onPressed: () {
-                // Handle icon button press
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return InfoDialog(
+                      title: 'Personal Information',
+                      description:
+                          'Please provide your personal information to proceed with the order.',
+                    );
+                  },
+                );
               },
               icon: Icon(Icons.info, color: textTertiary, size: width * 0.04),
             ),

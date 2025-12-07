@@ -7,9 +7,9 @@ import 'package:provider/provider.dart';
 import 'package:grtabstore/providers/HomeProviders/productsProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/adSpace.dart';
-import 'package:grtabstore/ui/widgets/Home/Product/displayProducts.dart';
+import 'package:grtabstore/ui/widgets/Home/ProductDisplay/displayProducts.dart';
 import 'package:grtabstore/ui/widgets/Home/Filters/filters.dart';
-import 'package:grtabstore/ui/widgets/Home/flexibleSpaceBar.dart';
+import 'package:grtabstore/ui/widgets/Shared/flexibleSpaceBar.dart';
 import 'package:grtabstore/ui/widgets/Shared/menuButton.dart';
 
 class MobileHomeScreen extends StatelessWidget {

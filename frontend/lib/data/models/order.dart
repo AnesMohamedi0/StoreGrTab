@@ -22,7 +22,7 @@ class Order {
   });
 
   // Helper method to convert products list to comma-separated string
-  String _productsToString(List<(int, int)> products) {
+  String productsToString(List<(int, int)> products) {
     List<int> allIds = [];
     for (var (productId, quantity) in products) {
       for (int i = 0; i < quantity; i++) {
@@ -33,7 +33,7 @@ class Order {
   }
 
   // Helper method to convert comma-separated string to products list
-  List<(int, int)> _stringToProducts(String productsString) {
+  List<(int, int)> stringToProducts(String productsString) {
     if (productsString.isEmpty) return [];
 
     final ids = productsString.split(',').map(int.parse).toList();
@@ -81,7 +81,7 @@ class Order {
       orderDate: order.orderDate,
       communeId: order.communeId,
       deliveryType: order.deliveryType,
-      products: order._stringToProducts(productsString),
+      products: order.stringToProducts(productsString),
     );
   }
 
@@ -92,7 +92,7 @@ class Order {
     'totalPrice': totalPrice,
     'orderDate': orderDate.toIso8601String(),
     'deliveryType': deliveryType,
-    'products': _productsToString(products),
+    'products': productsToString(products),
     'communeId': communeId,
   };
 }

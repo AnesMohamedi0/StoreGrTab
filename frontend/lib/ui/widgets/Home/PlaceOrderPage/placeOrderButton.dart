@@ -20,40 +20,42 @@ class PlaceOrderButton extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: TextButton(
             style: TextButton.styleFrom(padding: EdgeInsets.zero),
-            onPressed: () async {
-              List<(int, int)> products = orderProvider.products
-                  .map((e) => (e.$1.productId, e.$2))
-                  .toList();
+            onPressed: !orderProvider.canOrder()
+                ? null
+                : () async {
+                    List<(int, int)> products = orderProvider.products
+                        .map((e) => (e.$1.productId, e.$2))
+                        .toList();
 
-              Order order = Order(
-                orderId: 0,
-                products: products,
-                name: orderProvider.name,
-                lastName: orderProvider.lastName,
-                phone: orderProvider.phoneNumber,
-                communeId: orderProvider.commune!.id,
-                deliveryType: orderProvider.deliveryType,
-                totalPrice: orderProvider.getTotalOrderCost(),
-                orderDate: DateTime.now(),
-              );
+                    Order order = Order(
+                      orderId: 0,
+                      products: products,
+                      name: orderProvider.name,
+                      lastName: orderProvider.lastName,
+                      phone: orderProvider.phoneNumber,
+                      communeId: orderProvider.commune!.id,
+                      deliveryType: orderProvider.deliveryType,
+                      totalPrice: orderProvider.getTotalOrderCost(),
+                      orderDate: DateTime.now(),
+                    );
 
-              await apiService.post('Order', order.toJson());
+                    await apiService.post('Order', order.toJson());
 
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: AbelText(
-                    text: 'Order placed successfully!',
-                    fontSize: width * 0.04,
-                    color: textOnDark,
-                  ),
-                  backgroundColor: accentSuccess,
-                ),
-              );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: AbelText(
+                          text: 'Order placed successfully!',
+                          fontSize: width * 0.04,
+                          color: textOnDark,
+                        ),
+                        backgroundColor: accentSuccess,
+                      ),
+                    );
 
-              context.read<CartProvider>().clearCart();
+                    context.read<CartProvider>().clearCart();
 
-              Navigator.pop(context);
-            },
+                    Navigator.pop(context);
+                  },
             child: Container(
               padding: EdgeInsets.symmetric(
                 horizontal: width * 0.02,

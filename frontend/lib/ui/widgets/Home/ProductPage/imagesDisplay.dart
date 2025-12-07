@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFooter.dart';
+import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
 class ImagesDisplay extends StatefulWidget {
   final List<String> imagesUrl;
@@ -47,12 +49,7 @@ class _ImagesDisplayState extends State<ImagesDisplay> {
                 builder: (BuildContext context) {
                   return Container(
                     width: width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      //border: Border.all(color: electricBlueDark, width: 2),
-                    ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
                       child: Image.network(
                         imageUrl,
                         fit: BoxFit.cover,
@@ -68,6 +65,30 @@ class _ImagesDisplayState extends State<ImagesDisplay> {
                 },
               );
             }).toList(),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Container(
+              color: const Color.fromARGB(179, 0, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  AbelText(
+                    text: '${currentIndex + 1}',
+                    fontSize: width * 0.035,
+                    color: white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  AbelText(
+                    text: '/${widget.imagesUrl.length}',
+                    fontSize: width * 0.025,
+                    color: secondaryBackground,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),

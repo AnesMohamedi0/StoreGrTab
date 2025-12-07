@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:grtabstore/providers/AdminProvider/adminAdsProvider.dart';
+import 'package:grtabstore/providers/AdminProvider/orderPanelProvider.dart';
 import 'package:grtabstore/providers/authProvider.dart';
 import 'package:grtabstore/ui/screens/Admin/desktopAdminPage.dart';
 import 'package:grtabstore/ui/screens/Admin/mobileAdminPage.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Home/Cart/cartModal.dart';
-import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
+import 'package:grtabstore/ui/widgets/Shared/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Shared/loginModal.dart';
 import 'package:grtabstore/ui/widgets/Shared/responsiveLayout.dart';
@@ -115,9 +117,19 @@ class MobileCustomDrawer extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ResponsiveLayout(
-                          mobile: MobileAdminPage(),
-                          desktop: DesktopAdminPage(),
+                        builder: (context) => MultiProvider(
+                          providers: [
+                            ChangeNotifierProvider(
+                              create: (_) => OrderPanelProvider(),
+                            ),
+                            ChangeNotifierProvider(
+                              create: (_) => AdminAdsProvider(),
+                            ),
+                          ],
+                          child: ResponsiveLayout(
+                            mobile: MobileAdminPage(),
+                            desktop: DesktopAdminPage(),
+                          ),
                         ),
                       ),
                     );

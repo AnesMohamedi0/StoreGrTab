@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
+import 'package:grtabstore/ui/widgets/Shared/infoDialog.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +36,18 @@ class DeliveryTypeSelector extends StatelessWidget {
                     IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        // Handle icon button press
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return InfoDialog(
+                              title: 'Public Pickup',
+                              description:
+                                  'Public pickup is free and only available on :\n'
+                                  '1- Ouled Belhaj, Saoula, Alger. \n'
+                                  '2- USTHB, Bab Ezzouar, Alger.',
+                            );
+                          },
+                        );
                       },
                       icon: Icon(
                         Icons.info,

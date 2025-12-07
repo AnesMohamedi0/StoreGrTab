@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
+import 'package:grtabstore/ui/widgets/Shared/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
@@ -42,6 +42,18 @@ class MobileCustomAdminDrawer extends StatelessWidget {
                 SizedBox(height: height * 0.02),
               ],
             ),
+          ),
+          ListTile(
+            leading: Icon(Icons.home, color: textSecondary, size: width * 0.06),
+            title: AbelText(
+              text: 'Home Page',
+              fontSize: width * 0.048,
+              color: textPrimary,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
           ),
 
           ListTile(

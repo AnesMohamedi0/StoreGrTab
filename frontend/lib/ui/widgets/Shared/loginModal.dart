@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grtabstore/providers/AdminProvider/adminAdsProvider.dart';
+import 'package:grtabstore/providers/AdminProvider/orderPanelProvider.dart';
 import 'package:grtabstore/providers/authProvider.dart';
 import 'package:grtabstore/ui/screens/Admin/desktopAdminPage.dart';
 import 'package:grtabstore/ui/screens/Admin/mobileAdminPage.dart';
@@ -174,9 +176,15 @@ class _LoginModalState extends State<LoginModal> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ResponsiveLayout(
-            mobile: MobileAdminPage(),
-            desktop: DesktopAdminPage(),
+          builder: (context) => MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => OrderPanelProvider()),
+              ChangeNotifierProvider(create: (_) => AdminAdsProvider()),
+            ],
+            child: ResponsiveLayout(
+              mobile: MobileAdminPage(),
+              desktop: DesktopAdminPage(),
+            ),
           ),
         ),
       );

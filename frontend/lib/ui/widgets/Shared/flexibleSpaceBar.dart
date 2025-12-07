@@ -3,7 +3,7 @@ import 'package:grtabstore/providers/HomeProviders/cartProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Home/Cart/cartModal.dart';
-import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
+import 'package:grtabstore/ui/widgets/Shared/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 

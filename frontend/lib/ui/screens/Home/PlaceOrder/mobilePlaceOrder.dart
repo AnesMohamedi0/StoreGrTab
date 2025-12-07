@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/informationsForm.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/placeOrderButton.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/priceDisplay.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/productsToOrder.dart';
-import 'package:grtabstore/ui/widgets/PlaceOrder/terms.dart';
+import 'package:grtabstore/ui/widgets/Home/PlaceOrderPage/informationsForm.dart';
+import 'package:grtabstore/ui/widgets/Home/PlaceOrderPage/placeOrderButton.dart';
+import 'package:grtabstore/ui/widgets/Home/PlaceOrderPage/priceDisplay.dart';
+import 'package:grtabstore/ui/widgets/Home/PlaceOrderPage/productsToOrder.dart';
+import 'package:grtabstore/ui/widgets/Home/PlaceOrderPage/terms.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
-import 'package:grtabstore/ui/widgets/Home/logoDisplay.dart';
+import 'package:grtabstore/ui/widgets/Shared/logoDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/footer.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 
@@ -71,20 +71,6 @@ class MobilePlaceOrder extends StatelessWidget {
               padding: EdgeInsets.all(width * 0.03),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(width: width * 0.02),
-                      AbelText(
-                        text:
-                            "Please enter your personal informations to place the Order",
-                        fontSize: width * 0.035,
-                        fontWeight: FontWeight.bold,
-                        color: textSecondary,
-                      ),
-                    ],
-                  ),
-
                   SizedBox(height: height * 0.02),
 
                   ProductsToOrder(),

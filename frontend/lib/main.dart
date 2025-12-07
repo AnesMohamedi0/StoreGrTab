@@ -21,7 +21,6 @@ void main() {
         ChangeNotifierProvider(create: (_) => OrderProvider()),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => AdminAdsProvider()),
       ],
       child: const App(),
     ),

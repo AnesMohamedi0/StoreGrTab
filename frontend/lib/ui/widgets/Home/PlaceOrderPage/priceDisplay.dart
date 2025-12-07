@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
+import 'package:grtabstore/ui/widgets/Shared/infoDialog.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -31,18 +32,26 @@ class TotalPriceDisplay extends StatelessWidget {
                     color: textSecondary,
                   ),
 
-                  if (orderProvider.province?.name == 'Alger')
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        // Handle icon button press
-                      },
-                      icon: Icon(
-                        Icons.info,
-                        color: textTertiary,
-                        size: width * 0.04,
-                      ),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return InfoDialog(
+                            title: 'Price Summary',
+                            description:
+                                'the Items Cost is the total cost of all products in your order plus the delivery cost based on your selected delivery type and province.',
+                          );
+                        },
+                      );
+                    },
+                    icon: Icon(
+                      Icons.info,
+                      color: textTertiary,
+                      size: width * 0.04,
                     ),
+                  ),
                 ],
               ),
               SizedBox(height: width * 0.005),

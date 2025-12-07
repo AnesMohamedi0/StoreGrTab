@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/data/models/product.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/Product/itemDescription.dart';
-import 'package:grtabstore/ui/widgets/Product/imagesDisplay.dart';
-import 'package:grtabstore/ui/widgets/Product/placeOrderAddCart.dart';
-import 'package:grtabstore/ui/widgets/Product/priceDisplay.dart';
-import 'package:grtabstore/ui/widgets/Product/productNameDisplay.dart';
+import 'package:grtabstore/ui/widgets/Home/ProductPage/itemDescription.dart';
+import 'package:grtabstore/ui/widgets/Home/ProductPage/imagesDisplay.dart';
+import 'package:grtabstore/ui/widgets/Home/ProductPage/placeOrderAddCart.dart';
+import 'package:grtabstore/ui/widgets/Home/ProductPage/priceDisplay.dart';
+import 'package:grtabstore/ui/widgets/Home/ProductPage/productNameDisplay.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Shared/footer.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';

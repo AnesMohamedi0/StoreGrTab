@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:grtabstore/providers/AdminProvider/orderPanelProvider.dart';
+import 'package:grtabstore/ui/screens/Admin/OrderPanel/mobileOrderPanelPage.dart';
+import 'package:grtabstore/ui/screens/Admin/desktopAdminPage.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/Admin/adsPanel.dart';
+import 'package:grtabstore/ui/widgets/Admin/PanelButton.dart';
 import 'package:grtabstore/ui/widgets/Drawer/adminDrawer.dart';
 import 'package:grtabstore/ui/widgets/Shared/animatedFlexibleSpace.dart';
 import 'package:grtabstore/ui/widgets/Shared/menuButton.dart';
+import 'package:grtabstore/ui/widgets/Shared/responsiveLayout.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
+import 'package:provider/provider.dart';
 
 class MobileAdminPage extends StatelessWidget {
   const MobileAdminPage({super.key});
@@ -65,7 +69,56 @@ class MobileAdminPage extends StatelessWidget {
           vertical: height * 0.04,
         ),
         height: double.infinity,
-        child: ListView(children: [AdsPanel()]),
+        child: ListView(
+          children: [
+            PanelButton(
+              icon: Icon(
+                Icons.shopping_bag,
+                color: textPrimary,
+                size: width * 0.04,
+              ),
+              text: 'Orders Panel',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider(
+                      create: (_) => OrderPanelProvider(),
+                      child: MobileOrderPanelPage(),
+                    ),
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: height * 0.02),
+
+            PanelButton(
+              icon: Icon(
+                Icons.ad_units,
+                color: textPrimary,
+                size: width * 0.04,
+              ),
+              text: 'Advertisement Panel',
+              onPressed: () {},
+            ),
+            SizedBox(height: height * 0.02),
+            PanelButton(
+              icon: Icon(
+                Icons.branding_watermark,
+                color: textPrimary,
+                size: width * 0.04,
+              ),
+              text: 'Brand Panel',
+              onPressed: () {},
+            ),
+            SizedBox(height: height * 0.02),
+            PanelButton(
+              icon: Icon(Icons.tablet, color: textPrimary, size: width * 0.04),
+              text: 'Products Panel',
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

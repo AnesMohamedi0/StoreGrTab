@@ -21,11 +21,11 @@ namespace GraphicsTabletStore.API.Controllers
             return await _context.Communes.ToListAsync();
         }
 
-        [HttpGet("province/{provinceId}")]
-        public async Task<ActionResult<IEnumerable<Commune>>> GetCommunesByProvince(int provinceId)
+        [HttpGet("Commune/{communeId}")]
+        public async Task<ActionResult<IEnumerable<Commune>>> GetCommunesByCommune(int communeId)
         {
             var communes = await _context.Communes
-                .Where(c => c.ProvinceId == provinceId)
+                .Where(c => c.Id == communeId)
                 .ToListAsync();
 
             if (communes == null || communes.Count == 0)

@@ -17,8 +17,8 @@ class PriceDisplay extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.price_change, color: textPrimary, size: width * 0.05),
-              SizedBox(width: width * 0.02),
+              Icon(Icons.attach_money, color: textPrimary, size: width * 0.05),
+              SizedBox(width: width * 0.01),
               AbelText(
                 text: 'Price:',
                 fontSize: width * 0.048,

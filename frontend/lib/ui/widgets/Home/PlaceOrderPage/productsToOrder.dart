@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grtabstore/providers/HomeProviders/orderProvider.dart';
 import 'package:grtabstore/ui/theme/colors.dart';
-import 'package:grtabstore/ui/widgets/Home/Product/ProductHorizontalDisplay.dart';
+import 'package:grtabstore/ui/widgets/Home/ProductDisplay/ProductHorizontalDisplay.dart';
+import 'package:grtabstore/ui/widgets/Shared/infoDialog.dart';
 import 'package:grtabstore/ui/widgets/Shared/text.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +27,16 @@ class ProductsToOrder extends StatelessWidget {
             IconButton(
               padding: EdgeInsets.zero,
               onPressed: () {
-                // Handle icon button press
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return InfoDialog(
+                      title: 'Items To Order',
+                      description:
+                          'You can add products to your order by clicking on the "Add to Order" button on each product page',
+                    );
+                  },
+                );
               },
               icon: Icon(Icons.info, color: textTertiary, size: width * 0.04),
             ),
